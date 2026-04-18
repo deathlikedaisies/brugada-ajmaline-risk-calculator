@@ -25,8 +25,8 @@ export function ResultCard({ result }: ResultCardProps) {
           {result.percentage.toFixed(1)}%
         </h2>
         <p className="mt-2 text-sm leading-6 text-slate-600">
-          This estimate is derived from an adjusted regression model and is
-          intended for research interpretation only.
+          This value represents a model-derived probability based on internal
+          model performance and is intended for research interpretation.
         </p>
         <p className="mt-2 text-sm leading-6 text-slate-600">
           Adjusted logistic regression output for research interface review.
@@ -34,7 +34,7 @@ export function ResultCard({ result }: ResultCardProps) {
           clinical, ECG, and genetic predictors included in the adjusted model.
         </p>
         <p className="mt-2 text-xs text-slate-500">
-          Model discrimination (AUC): {modelConfig.auc.toFixed(2)}
+          Model discrimination (apparent AUC): {modelConfig.auc.toFixed(2)}
         </p>
         <p className="mt-1 text-xs text-slate-500">
           Derived from n = 1,129 individuals in the ajmaline cohort
@@ -53,7 +53,7 @@ export function ResultCard({ result }: ResultCardProps) {
 
         <div className="py-4">
           <h3 className="text-base font-semibold text-slate-950">
-            Model contributors
+            Model terms
           </h3>
           <dl className="mt-3 divide-y divide-slate-200 border-y border-slate-200">
             {result.contributingFactors.map((factor) => (
@@ -76,8 +76,8 @@ export function ResultCard({ result }: ResultCardProps) {
             ))}
           </dl>
           <p className="mt-2 text-xs leading-5 text-slate-500">
-            Contribution labels reflect relative influence within the model and
-            are not causal or independent effect estimates.
+            Displayed contributions reflect model coefficients and input values
+            and should not be interpreted as independent or causal effects.
           </p>
         </div>
 
@@ -93,31 +93,31 @@ export function ResultCard({ result }: ResultCardProps) {
               placeholders for interface review.
             </p>
             <dl className="mt-4 grid gap-3 border-l-2 border-slate-200 pl-4">
-              <div className="flex items-center justify-between gap-4">
+              <div className="grid gap-1 sm:flex sm:items-center sm:justify-between sm:gap-4">
                 <dt className="text-slate-600">Linear predictor</dt>
                 <dd className="font-mono text-slate-950">
                   {result.linearPredictor.toFixed(3)}
                 </dd>
               </div>
-              <div className="flex items-center justify-between gap-4">
+              <div className="grid gap-1 sm:flex sm:items-center sm:justify-between sm:gap-4">
                 <dt className="text-slate-600">Probability</dt>
                 <dd className="font-mono text-slate-950">
                   {result.probability.toFixed(4)}
                 </dd>
               </div>
-              <div className="flex items-center justify-between gap-4">
+              <div className="grid gap-1 sm:flex sm:items-center sm:justify-between sm:gap-4">
                 <dt className="text-slate-600">Model band</dt>
-                <dd className="text-right text-slate-950">
+                <dd className="text-slate-950 sm:text-right">
                   {result.category}
                 </dd>
               </div>
-              <div className="flex items-center justify-between gap-4">
+              <div className="grid gap-1 sm:flex sm:items-center sm:justify-between sm:gap-4">
                 <dt className="text-slate-600">Intermediate threshold</dt>
                 <dd className="font-mono text-slate-950">
                   {modelConfig.riskThresholds.intermediate.toFixed(2)}
                 </dd>
               </div>
-              <div className="flex items-center justify-between gap-4">
+              <div className="grid gap-1 sm:flex sm:items-center sm:justify-between sm:gap-4">
                 <dt className="text-slate-600">Higher threshold</dt>
                 <dd className="font-mono text-slate-950">
                   {modelConfig.riskThresholds.higher.toFixed(2)}
@@ -128,7 +128,7 @@ export function ResultCard({ result }: ResultCardProps) {
               {result.contributingFactors.map((factor) => (
                 <div
                   key={factor.label}
-                  className="flex items-center justify-between gap-4"
+                  className="grid gap-1 sm:flex sm:items-center sm:justify-between sm:gap-4"
                 >
                   <dt className="text-slate-600">{factor.label}</dt>
                   <dd className="font-mono text-slate-950">

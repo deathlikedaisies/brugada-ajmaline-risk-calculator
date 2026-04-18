@@ -60,7 +60,7 @@ export function CalculatorForm() {
               onClick={() => setInputs(examplePatient)}
               className="w-full rounded-md border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-800 hover:bg-slate-100"
             >
-              Load example profile
+              Load example case
             </button>
             <p className="mt-2 text-xs leading-5 text-slate-500">
               {examplePatientLabel}
@@ -73,7 +73,7 @@ export function CalculatorForm() {
             <InputGroup title="Patient characteristics">
               <RadioGroup
                 legend="Sex"
-                helperText="Encoded for model input (Male = 0, Female = 1)."
+                helperText="Sex (encoded for model input: male = 0, female = 1)."
                 name="sex"
                 options={[
                   { label: "Male = 0", value: "male" },

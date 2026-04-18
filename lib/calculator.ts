@@ -14,8 +14,8 @@ export type ContributingFactor = {
   value: string;
   contribution: number;
   contributionStrength:
-    | "Higher relative contribution"
-    | "Lower relative contribution";
+    | "Positive coefficient contribution"
+    | "Negative or minimal coefficient contribution";
 };
 
 export type CalculationResult = {
@@ -59,7 +59,7 @@ export function categorizeRisk(probability: number): RiskCategory {
 }
 
 export function getInterpretation(): string {
-  return "This value represents a relative model-based estimate within this dataset. It should not be interpreted as an absolute clinical risk.";
+  return "This value represents a relative model-based estimate within this dataset and reflects internal model performance. It should not be interpreted as an absolute or externally generalizable clinical risk.";
 }
 
 export function getContributingFactors(
@@ -123,9 +123,9 @@ export function getContributingFactors(
 function getContributionStrength(
   contribution: number,
 ): ContributingFactor["contributionStrength"] {
-  return Math.abs(contribution) >= 0.25
-    ? "Higher relative contribution"
-    : "Lower relative contribution";
+  return contribution > 0
+    ? "Positive coefficient contribution"
+    : "Negative or minimal coefficient contribution";
 }
 
 export function calculateRisk(inputs: ModelInputs): CalculationResult {

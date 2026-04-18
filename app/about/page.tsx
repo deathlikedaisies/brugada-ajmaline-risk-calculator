@@ -44,7 +44,8 @@ export default function AboutPage() {
             applies the logistic function to return a predicted probability. It
             remains a proof-of-concept research implementation and is not
             validated for routine clinical use. This model reflects internal
-            performance only and has not undergone external validation.
+            performance only and has not undergone external validation. No
+            calibration assessment or recalibration has been performed.
           </p>
         </section>
 

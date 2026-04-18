@@ -15,10 +15,10 @@ export function Navbar() {
       >
         <Link
           href="/"
-          className="text-lg font-semibold tracking-normal text-slate-950"
+          className="max-w-full text-lg font-semibold tracking-normal text-slate-950"
         >
           BARC{" "}
-          <span className="font-normal text-slate-500">
+          <span className="block font-normal text-slate-500 sm:inline">
             Proof-of-concept research calculator
           </span>
         </Link>
