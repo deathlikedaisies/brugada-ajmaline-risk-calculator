@@ -1,0 +1,140 @@
+import type { CalculationResult } from "@/lib/calculator";
+import { modelConfig } from "@/lib/model-config";
+
+type ResultCardProps = {
+  result: CalculationResult;
+};
+
+const categoryStyles: Record<CalculationResult["category"], string> = {
+  Lower: "border-emerald-200 bg-emerald-50 text-emerald-900",
+  Intermediate: "border-amber-200 bg-amber-50 text-amber-900",
+  Higher: "border-rose-200 bg-rose-50 text-rose-900",
+};
+
+export function ResultCard({ result }: ResultCardProps) {
+  return (
+    <section
+      aria-labelledby="risk-result-heading"
+      className="rounded-lg border border-slate-200 bg-white shadow-sm"
+    >
+      <div className="border-b border-slate-200 px-5 py-5 sm:px-6">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+          <p className="text-xs font-semibold uppercase text-slate-500">
+            Model-based estimate
+          </p>
+          <p className="w-fit rounded-md border border-slate-200 px-2.5 py-1 text-xs font-medium text-slate-600">
+            Research only
+          </p>
+        </div>
+        <p className="mt-4 text-sm font-medium text-slate-600">
+          Predicted probability
+        </p>
+        <h2
+          id="risk-result-heading"
+          className="mt-1 text-5xl font-semibold tracking-normal text-slate-950"
+        >
+          {result.percentage.toFixed(1)}%
+        </h2>
+        <p className="mt-2 text-sm leading-6 text-slate-600">
+          Placeholder logistic regression output for research interface review.
+        </p>
+      </div>
+
+      <div className="divide-y divide-slate-200 px-5 sm:px-6">
+        <div className="py-4">
+          <h3 className="text-base font-semibold text-slate-950">
+            Risk category
+          </h3>
+          <p
+            className={`mt-2 inline-flex rounded-md border px-3 py-1.5 text-sm font-semibold ${categoryStyles[result.category]}`}
+          >
+            {result.category}
+          </p>
+        </div>
+
+        <div className="py-4">
+          <h3 className="text-base font-semibold text-slate-950">
+            Plain-language interpretation
+          </h3>
+          <p className="mt-2 text-base leading-7 text-slate-700">
+            {result.interpretation}
+          </p>
+        </div>
+
+        <div className="py-4">
+          <h3 className="text-base font-semibold text-slate-950">
+            Main contributing factors
+          </h3>
+          <dl className="mt-3 divide-y divide-slate-200 border-y border-slate-200">
+            {result.contributingFactors.map((factor) => (
+              <div
+                key={factor.label}
+                className="grid gap-2 py-3 text-sm sm:grid-cols-[minmax(0,1fr)_minmax(130px,auto)]"
+              >
+                <dt>
+                  <span className="block font-medium text-slate-800">
+                    {factor.label}
+                  </span>
+                  <span className="mt-0.5 block text-xs text-slate-500">
+                    {factor.direction}
+                  </span>
+                </dt>
+                <dd className="text-slate-700 sm:text-right">
+                  <span className="block">{factor.value}</span>
+                  <span className="mt-0.5 block font-mono text-xs text-slate-500">
+                    LP {factor.contribution >= 0 ? "+" : ""}
+                    {factor.contribution.toFixed(3)}
+                  </span>
+                </dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-2 text-xs leading-5 text-slate-500">
+            Listed by absolute contribution within the placeholder coefficient
+            set. Direction and LP values are descriptive model internals.
+          </p>
+        </div>
+
+        <details className="py-4">
+          <summary className="cursor-pointer px-4 py-3 text-sm font-semibold text-slate-900">
+            Why this estimate?
+          </summary>
+          <div className="px-4 pb-1 pt-3 text-sm leading-6 text-slate-700">
+            <p>
+              The calculator applies the {modelConfig.version} placeholder
+              coefficients to the entered predictors, sums them into a linear
+              predictor, then converts that value with the logistic function.
+              Category thresholds are also placeholders.
+            </p>
+            <dl className="mt-4 grid gap-3 border-l-2 border-slate-200 pl-4">
+              <div className="flex items-center justify-between gap-4">
+                <dt className="text-slate-600">Linear predictor</dt>
+                <dd className="font-mono text-slate-950">
+                  {result.linearPredictor.toFixed(3)}
+                </dd>
+              </div>
+              <div className="flex items-center justify-between gap-4">
+                <dt className="text-slate-600">Probability</dt>
+                <dd className="font-mono text-slate-950">
+                  {result.probability.toFixed(4)}
+                </dd>
+              </div>
+              <div className="flex items-center justify-between gap-4">
+                <dt className="text-slate-600">Intermediate threshold</dt>
+                <dd className="font-mono text-slate-950">
+                  {modelConfig.riskThresholds.intermediate.toFixed(2)}
+                </dd>
+              </div>
+              <div className="flex items-center justify-between gap-4">
+                <dt className="text-slate-600">Higher threshold</dt>
+                <dd className="font-mono text-slate-950">
+                  {modelConfig.riskThresholds.higher.toFixed(2)}
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </details>
+      </div>
+    </section>
+  );
+}
