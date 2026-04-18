@@ -11,11 +11,11 @@ export default function Home() {
           Brugada Ajmaline Risk Calculator (BARC)
         </h1>
         <p className="mt-6 text-base leading-8 text-slate-700 sm:text-lg">
-          BARC is a proof-of-concept interface for presenting a model-based risk
-          estimate in the setting of ajmaline testing for Brugada syndrome.
-          The coefficients reflect the adjusted analysis model, while displayed
-          risk bands are placeholder model-based bands and are not validated for
-          clinical use.
+          BARC is a proof-of-concept research interface for presenting an
+          adjusted logistic regression-based estimate in the setting of
+          ajmaline testing for Brugada syndrome. The coefficients reflect the
+          adjusted model; displayed bands, where shown in technical details, are
+          not validated clinical thresholds.
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <Link

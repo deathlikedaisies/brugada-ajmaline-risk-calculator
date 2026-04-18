@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   const predictors = [
     "LASSO Clinical PGS, entered as a standardized z-score",
-    "Sex (model input)",
+    "Sex, encoded for model input",
     "Baseline QRS duration in milliseconds",
     "Baseline type 2 or type 3 Brugada ECG pattern",
     "Family history of Brugada syndrome",
@@ -28,7 +28,8 @@ export default function AboutPage() {
         logistic regression estimate in the context of Brugada syndrome
         ajmaline provocation testing. This interface is intended to demonstrate
         how a multivariable model may be translated into a clinician-facing
-        tool.
+        tool. The model integrates clinical, ECG, and polygenic predictors
+        derived from the adjusted analysis framework.
       </p>
 
       <div className="mt-8 space-y-8 text-base leading-8 text-slate-700">
@@ -40,9 +41,9 @@ export default function AboutPage() {
             The current implementation uses the adjusted logistic regression
             model specified as: {modelConfig.formula}. It combines the intercept
             with weighted predictor values to calculate a linear predictor, then
-            applies the logistic function to return a predicted probability.
-            The implementation is still a proof-of-concept research interface
-            and is not validated for routine clinical use.
+            applies the logistic function to return a predicted probability. It
+            remains a proof-of-concept research implementation and is not
+            validated for routine clinical use.
           </p>
         </section>
 

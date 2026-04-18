@@ -72,8 +72,8 @@ export function CalculatorForm() {
           <div className="grid gap-8">
             <InputGroup title="Patient characteristics">
               <RadioGroup
-                legend="Sex (model input)"
-                helperText="Original dataset coding after transformation: male = 0, female = 1."
+                legend="Sex"
+                helperText="Encoded for model input (Male = 0, Female = 1)."
                 name="sex"
                 options={[
                   { label: "Male = 0", value: "male" },

@@ -5,15 +5,6 @@ type ResultCardProps = {
   result: CalculationResult;
 };
 
-const categoryStyles: Record<CalculationResult["category"], string> = {
-  "Lower placeholder model-based band":
-    "border-emerald-200 bg-emerald-50 text-emerald-900",
-  "Intermediate placeholder model-based band":
-    "border-amber-200 bg-amber-50 text-amber-900",
-  "Higher placeholder model-based band":
-    "border-rose-200 bg-rose-50 text-rose-900",
-};
-
 export function ResultCard({ result }: ResultCardProps) {
   return (
     <section
@@ -41,22 +32,14 @@ export function ResultCard({ result }: ResultCardProps) {
         <p className="mt-2 text-sm leading-6 text-slate-600">
           Adjusted logistic regression output for research interface review.
           This estimate reflects the combined contribution of clinical, ECG, and
-          genetic predictors included in the current model.
+          genetic predictors included in the adjusted model.
+        </p>
+        <p className="mt-2 text-xs text-slate-500">
+          Model discrimination (AUC): {modelConfig.auc.toFixed(2)}
         </p>
       </div>
 
       <div className="divide-y divide-slate-200 px-5 sm:px-6">
-        <div className="py-4">
-          <h3 className="text-base font-semibold text-slate-950">
-            Risk category
-          </h3>
-          <p
-            className={`mt-2 inline-flex rounded-md border px-3 py-1.5 text-sm font-semibold ${categoryStyles[result.category]}`}
-          >
-            {result.category}
-          </p>
-        </div>
-
         <div className="py-4">
           <h3 className="text-base font-semibold text-slate-950">
             Plain-language interpretation
@@ -118,6 +101,12 @@ export function ResultCard({ result }: ResultCardProps) {
                 <dt className="text-slate-600">Probability</dt>
                 <dd className="font-mono text-slate-950">
                   {result.probability.toFixed(4)}
+                </dd>
+              </div>
+              <div className="flex items-center justify-between gap-4">
+                <dt className="text-slate-600">Model band</dt>
+                <dd className="text-right text-slate-950">
+                  {result.category}
                 </dd>
               </div>
               <div className="flex items-center justify-between gap-4">
