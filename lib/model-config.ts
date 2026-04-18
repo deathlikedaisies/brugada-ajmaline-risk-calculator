@@ -1,27 +1,29 @@
-export type Sex = "female" | "male";
+export type Sex = "male" | "female";
 
 export type ModelInputs = {
-  age: number;
+  lassoClinicalPgs: number;
   sex: Sex;
-  familyHistory: boolean;
   baselineQrs: number;
-  type23Ecg: boolean;
-  pgsScore: number;
+  baselineType2or3: boolean;
+  baselineFamilyBrugada: boolean;
 };
 
 export type ModelCoefficientKey =
-  | "age"
-  | "maleSex"
-  | "familyHistory"
+  | "lassoClinicalPgs"
+  | "sex"
   | "baselineQrs"
-  | "type23Ecg"
-  | "pgsScore";
+  | "baselineType2or3"
+  | "baselineFamilyBrugada";
 
 export type ModelConfig = {
   name: string;
   version: string;
-  status: "placeholder";
+  status: "proof-of-concept";
+  formula: string;
   intendedUse: string;
+  pgsInputNote: string;
+  auc: number;
+  aic: number;
   intercept: number;
   coefficients: Record<ModelCoefficientKey, number>;
   riskThresholds: {
@@ -31,35 +33,45 @@ export type ModelConfig = {
 };
 
 export const modelConfig: ModelConfig = {
-  name: "BARC proof-of-concept logistic model",
-  version: "placeholder-0.1",
-  status: "placeholder",
+  name: "BARC adjusted logistic regression model",
+  version: "adjusted-logistic-0.1",
+  status: "proof-of-concept",
+  formula:
+    "Pheno ~ LASSO_Clinical_Samples_pgs + Sex + baselineQRS + baseline.type2or3 + baseline.family.brugada",
   intendedUse:
     "Research interface demonstration only; not validated for routine clinical care.",
-  intercept: -3.2,
+  pgsInputNote: "LASSO Clinical PGS is entered as a standardized z-score.",
+  auc: 0.8133623,
+  aic: 1008.132,
+  intercept: -8.24611961,
   coefficients: {
-    age: 0.018,
-    maleSex: 0.42,
-    familyHistory: 0.58,
-    baselineQrs: 0.012,
-    type23Ecg: 0.76,
-    pgsScore: 0.35,
+    lassoClinicalPgs: 1.08438989,
+    sex: 0.86091433,
+    baselineQrs: 0.05922689,
+    baselineType2or3: 1.06164985,
+    baselineFamilyBrugada: 0.55983774,
   },
   riskThresholds: {
-    // Placeholder category thresholds for UI review only.
-    intermediate: 0.08,
-    higher: 0.2,
+    // Placeholder category bands for UI review only; not validated thresholds.
+    intermediate: 0.2,
+    higher: 0.5,
   },
 };
 
 export const examplePatient: ModelInputs = {
-  age: 42,
-  sex: "male",
-  familyHistory: true,
-  baselineQrs: 104,
-  type23Ecg: true,
-  pgsScore: 0.8,
+  lassoClinicalPgs: 0.4,
+  sex: "female",
+  baselineQrs: 95,
+  baselineType2or3: true,
+  baselineFamilyBrugada: false,
 };
 
 export const examplePatientLabel =
-  "42-year-old male, family history present, baseline QRS 104 ms, type 2/3 ECG present, PGS 0.8";
+  "Female = 1, LASSO Clinical PGS 0.4, baseline QRS 95 ms, type 2/3 ECG present, family history no";
+
+export function getSexModelValue(sex: Sex): 0 | 1 {
+  // Source data: Sex was coded 1 = male and 2 = female. The analysis script
+  // transformed it with as.numeric(factor(Sex)) - 1, yielding male = 0,
+  // female = 1. The UI preserves that model coding.
+  return sex === "female" ? 1 : 0;
+}

@@ -6,9 +6,12 @@ type ResultCardProps = {
 };
 
 const categoryStyles: Record<CalculationResult["category"], string> = {
-  Lower: "border-emerald-200 bg-emerald-50 text-emerald-900",
-  Intermediate: "border-amber-200 bg-amber-50 text-amber-900",
-  Higher: "border-rose-200 bg-rose-50 text-rose-900",
+  "Lower placeholder model-based band":
+    "border-emerald-200 bg-emerald-50 text-emerald-900",
+  "Intermediate placeholder model-based band":
+    "border-amber-200 bg-amber-50 text-amber-900",
+  "Higher placeholder model-based band":
+    "border-rose-200 bg-rose-50 text-rose-900",
 };
 
 export function ResultCard({ result }: ResultCardProps) {
@@ -36,7 +39,9 @@ export function ResultCard({ result }: ResultCardProps) {
           {result.percentage.toFixed(1)}%
         </h2>
         <p className="mt-2 text-sm leading-6 text-slate-600">
-          Placeholder logistic regression output for research interface review.
+          Adjusted logistic regression output for research interface review.
+          This estimate reflects the combined contribution of clinical, ECG, and
+          genetic predictors included in the current model.
         </p>
       </div>
 
@@ -76,22 +81,18 @@ export function ResultCard({ result }: ResultCardProps) {
                     {factor.label}
                   </span>
                   <span className="mt-0.5 block text-xs text-slate-500">
-                    {factor.direction}
+                    {factor.contributionStrength}
                   </span>
                 </dt>
                 <dd className="text-slate-700 sm:text-right">
                   <span className="block">{factor.value}</span>
-                  <span className="mt-0.5 block font-mono text-xs text-slate-500">
-                    LP {factor.contribution >= 0 ? "+" : ""}
-                    {factor.contribution.toFixed(3)}
-                  </span>
                 </dd>
               </div>
             ))}
           </dl>
           <p className="mt-2 text-xs leading-5 text-slate-500">
-            Listed by absolute contribution within the placeholder coefficient
-            set. Direction and LP values are descriptive model internals.
+            Listed by absolute contribution within the adjusted coefficient set.
+            Contribution strength labels are descriptive model internals.
           </p>
         </div>
 
@@ -101,10 +102,10 @@ export function ResultCard({ result }: ResultCardProps) {
           </summary>
           <div className="px-4 pb-1 pt-3 text-sm leading-6 text-slate-700">
             <p>
-              The calculator applies the {modelConfig.version} placeholder
-              coefficients to the entered predictors, sums them into a linear
-              predictor, then converts that value with the logistic function.
-              Category thresholds are also placeholders.
+              The calculator applies the {modelConfig.version} coefficients to
+              the entered predictors, sums them into a linear predictor, then
+              converts that value with the logistic function. Category bands are
+              placeholders for interface review.
             </p>
             <dl className="mt-4 grid gap-3 border-l-2 border-slate-200 pl-4">
               <div className="flex items-center justify-between gap-4">
@@ -131,6 +132,20 @@ export function ResultCard({ result }: ResultCardProps) {
                   {modelConfig.riskThresholds.higher.toFixed(2)}
                 </dd>
               </div>
+            </dl>
+            <dl className="mt-4 grid gap-3 border-l-2 border-slate-200 pl-4">
+              {result.contributingFactors.map((factor) => (
+                <div
+                  key={factor.label}
+                  className="flex items-center justify-between gap-4"
+                >
+                  <dt className="text-slate-600">{factor.label}</dt>
+                  <dd className="font-mono text-slate-950">
+                    LP {factor.contribution >= 0 ? "+" : ""}
+                    {factor.contribution.toFixed(3)}
+                  </dd>
+                </div>
+              ))}
             </dl>
           </div>
         </details>

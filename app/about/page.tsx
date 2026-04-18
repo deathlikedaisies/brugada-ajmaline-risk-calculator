@@ -8,12 +8,11 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   const predictors = [
-    "Age at ajmaline challenge",
-    "Sex recorded for model input",
-    "Family history of Brugada syndrome or sudden cardiac death",
-    "Baseline QRS duration before ajmaline administration",
+    "LASSO Clinical PGS, entered as a standardized z-score",
+    "Sex (model input)",
+    "Baseline QRS duration in milliseconds",
     "Baseline type 2 or type 3 Brugada ECG pattern",
-    "Standardized Brugada-associated polygenic score",
+    "Family history of Brugada syndrome",
   ];
 
   return (
@@ -25,9 +24,11 @@ export default function AboutPage() {
         About the BARC proof of concept
       </h1>
       <p className="mt-5 max-w-3xl text-base leading-8 text-slate-700">
-        BARC is a browser-only research interface for reviewing how a candidate
-        logistic regression model might present a model-based estimate in the
-        context of Brugada syndrome ajmaline provocation testing.
+        BARC is a browser-only research interface for presenting an adjusted
+        logistic regression estimate in the context of Brugada syndrome
+        ajmaline provocation testing. This interface is intended to demonstrate
+        how a multivariable model may be translated into a clinician-facing
+        tool.
       </p>
 
       <div className="mt-8 space-y-8 text-base leading-8 text-slate-700">
@@ -36,12 +37,12 @@ export default function AboutPage() {
             What the model is
           </h2>
           <p className="mt-3">
-            The current implementation is a placeholder logistic regression
-            model. It combines an intercept with weighted predictor values to
-            calculate a linear predictor, then applies the logistic function to
-            return a probability. The coefficient values, category thresholds,
-            and example patient are illustrative and are not derived from a
-            locked or validated clinical model.
+            The current implementation uses the adjusted logistic regression
+            model specified as: {modelConfig.formula}. It combines the intercept
+            with weighted predictor values to calculate a linear predictor, then
+            applies the logistic function to return a predicted probability.
+            The implementation is still a proof-of-concept research interface
+            and is not validated for routine clinical use.
           </p>
         </section>
 
@@ -62,16 +63,16 @@ export default function AboutPage() {
           </h2>
           <p className="mt-3">
             This application is intended for academic discussion, user-interface
-            review, and research collaboration around a candidate Brugada
-            ajmaline risk model. It is not intended for routine clinical care,
-            patient triage, diagnostic classification, treatment selection, or
-            replacement of electrophysiology expertise.
+            review, and research collaboration around the adjusted Brugada
+            ajmaline model. It is not intended for routine clinical care,
+            patient triage, diagnostic classification, treatment selection,
+            guideline replacement, or replacement of electrophysiology expertise.
           </p>
         </section>
 
         <section className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
           <h2 className="text-xl font-semibold text-slate-950">
-            Placeholder model status
+            Model status and performance
           </h2>
           <dl className="mt-4 grid gap-4 text-sm sm:grid-cols-2">
             <div>
@@ -93,15 +94,27 @@ export default function AboutPage() {
               <dd className="text-slate-950">{modelConfig.status}</dd>
             </div>
             <div>
+              <dt className="font-medium text-slate-600">AUC</dt>
+              <dd className="font-mono text-slate-950">{modelConfig.auc}</dd>
+            </div>
+            <div>
+              <dt className="font-medium text-slate-600">AIC</dt>
+              <dd className="font-mono text-slate-950">{modelConfig.aic}</dd>
+            </div>
+            <div>
+              <dt className="font-medium text-slate-600">PGS input</dt>
+              <dd className="text-slate-950">{modelConfig.pgsInputNote}</dd>
+            </div>
+            <div>
               <dt className="font-medium text-slate-600">
-                Intermediate threshold
+                Intermediate band threshold
               </dt>
               <dd className="font-mono text-slate-950">
                 {modelConfig.riskThresholds.intermediate}
               </dd>
             </div>
             <div>
-              <dt className="font-medium text-slate-600">Higher threshold</dt>
+              <dt className="font-medium text-slate-600">Higher band threshold</dt>
               <dd className="font-mono text-slate-950">
                 {modelConfig.riskThresholds.higher}
               </dd>
@@ -117,8 +130,9 @@ export default function AboutPage() {
             The proof of concept has not undergone clinical validation,
             calibration assessment, external validation, subgroup performance
             review, decision-curve analysis, or governance review for deployment
-            in patient care. Its estimates should be treated as research
-            interface outputs only.
+            in routine patient care. Its estimates should be treated as research
+            interface outputs only, even though the displayed coefficients come
+            from the adjusted analysis model.
           </p>
         </section>
       </div>

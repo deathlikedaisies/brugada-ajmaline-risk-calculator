@@ -8,13 +8,14 @@ export default function Home() {
           Proof-of-concept research calculator
         </p>
         <h1 className="mt-4 text-4xl font-semibold tracking-normal text-slate-950 sm:text-5xl sm:leading-tight">
-          Brugada Ajmaline Risk Calculator
+          Brugada Ajmaline Risk Calculator (BARC)
         </h1>
         <p className="mt-6 text-base leading-8 text-slate-700 sm:text-lg">
-          BARC is a restrained research prototype for presenting a model-based
-          estimate in the setting of Brugada syndrome ajmaline challenge. The
-          current coefficients and risk thresholds are placeholders and are not
-          validated for clinical decision-making.
+          BARC is a proof-of-concept interface for presenting a model-based risk
+          estimate in the setting of ajmaline testing for Brugada syndrome.
+          The coefficients reflect the adjusted analysis model, while displayed
+          risk bands are placeholder model-based bands and are not validated for
+          clinical use.
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <Link
@@ -36,11 +37,11 @@ export default function Home() {
         {[
           {
             title: "Clinician-readable predictors",
-            body: "Inputs use electrophysiology-oriented wording for age at challenge, baseline ECG findings, family history, and polygenic score.",
+            body: "Inputs follow the adjusted model terms for LASSO Clinical PGS, sex coding, baseline QRS, ECG pattern, and family history.",
           },
           {
-            title: "Transparent placeholder model",
-            body: "The logistic calculation, coefficient status, and category thresholds are clearly marked as proof-of-concept material.",
+            title: "Transparent adjusted model",
+            body: "The logistic calculation, model metadata, and placeholder category bands are clearly marked for research review.",
           },
           {
             title: "Browser-only operation",

@@ -17,7 +17,10 @@ export function Navbar() {
           href="/"
           className="text-lg font-semibold tracking-normal text-slate-950"
         >
-          BARC <span className="font-normal text-slate-500">Research POC</span>
+          BARC{" "}
+          <span className="font-normal text-slate-500">
+            Proof-of-concept research calculator
+          </span>
         </Link>
         <div className="flex flex-wrap gap-2 text-sm font-medium text-slate-700">
           {navigation.map((item) => (

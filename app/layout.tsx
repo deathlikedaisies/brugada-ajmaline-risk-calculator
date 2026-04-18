@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "BARC | Brugada Ajmaline Risk Calculator",
+  title: "Brugada Ajmaline Risk Calculator (BARC)",
   description:
     "A proof-of-concept model-based Brugada ajmaline risk calculator.",
 };

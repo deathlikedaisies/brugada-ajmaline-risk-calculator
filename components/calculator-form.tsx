@@ -11,12 +11,11 @@ import {
 import { ResultCard } from "./result-card";
 
 const initialInputs: ModelInputs = {
-  age: 45,
-  sex: "female",
-  familyHistory: false,
-  baselineQrs: 98,
-  type23Ecg: false,
-  pgsScore: 0,
+  lassoClinicalPgs: 0,
+  sex: "male",
+  baselineQrs: 90,
+  baselineType2or3: false,
+  baselineFamilyBrugada: false,
 };
 
 export function CalculatorForm() {
@@ -48,10 +47,10 @@ export function CalculatorForm() {
               id="calculator-inputs-heading"
               className="mt-1 text-2xl font-semibold tracking-normal text-slate-950"
             >
-              Clinical, ECG, and genetic predictors
+              Adjusted model predictors
             </h2>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
-              Enter predictor values available before or at ajmaline challenge.
+              Enter values for the final adjusted logistic regression model.
               The estimate updates immediately as values change.
             </p>
           </div>
@@ -72,26 +71,13 @@ export function CalculatorForm() {
         <form className="px-5 py-6 sm:px-6">
           <div className="grid gap-8">
             <InputGroup title="Patient characteristics">
-              <NumberField
-                id="age"
-                label="Age at ajmaline challenge"
-                helperText="Age in years at provocation testing or index assessment."
-                min={0}
-                max={120}
-                step={1}
-                placeholder="45"
-                value={inputs.age}
-                unit="years"
-                onChange={(value) => updateInput("age", value)}
-              />
-
               <RadioGroup
-                legend="Sex recorded for model input"
-                helperText="Sex variable as represented in the placeholder model."
+                legend="Sex (model input)"
+                helperText="Original dataset coding after transformation: male = 0, female = 1."
                 name="sex"
                 options={[
-                  { label: "Female", value: "female" },
-                  { label: "Male", value: "male" },
+                  { label: "Male = 0", value: "male" },
+                  { label: "Female = 1", value: "female" },
                 ]}
                 value={inputs.sex}
                 onChange={(value) => updateInput("sex", value)}
@@ -100,51 +86,53 @@ export function CalculatorForm() {
 
             <InputGroup title="Clinical history and baseline ECG">
               <BooleanGroup
-                legend="Family history of Brugada syndrome or sudden cardiac death"
-                helperText="Documented Brugada syndrome or unexplained sudden cardiac death in a clinically relevant relative."
-                name="familyHistory"
-                value={inputs.familyHistory}
+                legend="Baseline type 2/3 Brugada ECG pattern"
+                helperText="Absent = 0, Present = 1"
+                name="baselineType2or3"
+                value={inputs.baselineType2or3}
                 trueLabel="Present"
                 falseLabel="Absent"
-                onChange={(value) => updateInput("familyHistory", value)}
+                onChange={(value) => updateInput("baselineType2or3", value)}
               />
 
               <NumberField
                 id="baseline-qrs"
                 label="Baseline QRS duration"
-                helperText="Resting ECG QRS duration before ajmaline administration."
+                helperText="Enter baseline QRS duration in milliseconds."
                 min={40}
                 max={220}
                 step={1}
-                placeholder="100"
+                placeholder="90"
                 value={inputs.baselineQrs}
                 unit="ms"
                 onChange={(value) => updateInput("baselineQrs", value)}
               />
 
               <BooleanGroup
-                legend="Baseline type 2 or type 3 Brugada ECG pattern"
-                helperText="Type 2 or type 3 Brugada ECG pattern before drug challenge."
-                name="type23Ecg"
-                value={inputs.type23Ecg}
-                trueLabel="Present"
-                falseLabel="Absent"
-                onChange={(value) => updateInput("type23Ecg", value)}
+                legend="Family history of Brugada syndrome"
+                helperText="No = 0, Yes = 1"
+                name="baselineFamilyBrugada"
+                value={inputs.baselineFamilyBrugada}
+                trueLabel="Yes"
+                falseLabel="No"
+                onChange={(value) =>
+                  updateInput("baselineFamilyBrugada", value)
+                }
               />
             </InputGroup>
 
             <InputGroup title="Genetic predictor">
               <NumberField
-                id="pgs-score"
-                label="Standardized polygenic score"
-                helperText="Standardized Brugada-associated PGS value."
+                id="lasso-clinical-pgs"
+                label="LASSO Clinical PGS"
+                helperText="Standardized composite polygenic score used in the adjusted model."
                 min={-5}
                 max={5}
                 step={0.1}
                 placeholder="0.0"
-                value={inputs.pgsScore}
-                unit="standardized"
-                onChange={(value) => updateInput("pgsScore", value)}
+                value={inputs.lassoClinicalPgs}
+                unit="z-score"
+                onChange={(value) => updateInput("lassoClinicalPgs", value)}
               />
             </InputGroup>
           </div>
@@ -156,10 +144,11 @@ export function CalculatorForm() {
         <section className="rounded-lg border border-slate-200 bg-white p-4 text-sm leading-6 text-slate-700 shadow-sm">
           <h2 className="font-semibold text-slate-950">Important limitation</h2>
           <p className="mt-2">
-            This proof of concept uses placeholder coefficients and placeholder
-            risk thresholds. The output is a model-based research estimate only;
-            it must not guide patient management or replace clinical guidelines,
-            electrophysiology review, or physician judgment.
+            This proof of concept uses adjusted model coefficients, while risk
+            bands remain placeholder model-based bands. The output is a
+            model-based research estimate only; it must not guide patient
+            management or replace clinical guidelines, electrophysiology review,
+            or physician judgment.
           </p>
         </section>
       </div>

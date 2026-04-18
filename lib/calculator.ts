@@ -1,12 +1,25 @@
-import { modelConfig, type ModelInputs } from "./model-config";
+import {
+  getSexModelValue,
+  modelConfig,
+  type ModelInputs,
+} from "./model-config";
 
-export type RiskCategory = "Lower" | "Intermediate" | "Higher";
+export type RiskCategory =
+  | "Lower placeholder model-based band"
+  | "Intermediate placeholder model-based band"
+  | "Higher placeholder model-based band";
 
 export type ContributingFactor = {
   label: string;
   value: string;
   contribution: number;
-  direction: "Increases estimate" | "Decreases estimate" | "No model contribution";
+  contributionStrength:
+    | "Strong positive contribution"
+    | "Moderate positive contribution"
+    | "Small positive contribution"
+    | "Moderate negative contribution"
+    | "Small negative contribution"
+    | "No material contribution";
 };
 
 export type CalculationResult = {
@@ -20,15 +33,16 @@ export type CalculationResult = {
 
 export function calculateLinearPredictor(inputs: ModelInputs): number {
   const { coefficients } = modelConfig;
+  const sexModelValue = getSexModelValue(inputs.sex);
 
   return (
     modelConfig.intercept +
-    coefficients.age * inputs.age +
-    coefficients.maleSex * (inputs.sex === "male" ? 1 : 0) +
-    coefficients.familyHistory * (inputs.familyHistory ? 1 : 0) +
+    coefficients.lassoClinicalPgs * inputs.lassoClinicalPgs +
+    coefficients.sex * sexModelValue +
     coefficients.baselineQrs * inputs.baselineQrs +
-    coefficients.type23Ecg * (inputs.type23Ecg ? 1 : 0) +
-    coefficients.pgsScore * inputs.pgsScore
+    coefficients.baselineType2or3 * (inputs.baselineType2or3 ? 1 : 0) +
+    coefficients.baselineFamilyBrugada *
+      (inputs.baselineFamilyBrugada ? 1 : 0)
   );
 }
 
@@ -38,99 +52,112 @@ export function logistic(linearPredictor: number): number {
 
 export function categorizeRisk(probability: number): RiskCategory {
   if (probability >= modelConfig.riskThresholds.higher) {
-    return "Higher";
+    return "Higher placeholder model-based band";
   }
 
   if (probability >= modelConfig.riskThresholds.intermediate) {
-    return "Intermediate";
+    return "Intermediate placeholder model-based band";
   }
 
-  return "Lower";
+  return "Lower placeholder model-based band";
 }
 
 export function getInterpretation(category: RiskCategory): string {
-  if (category === "Higher") {
-    return "This model-based estimate falls in the higher range using placeholder thresholds. It is research output and must not be interpreted as a management recommendation.";
+  if (category === "Higher placeholder model-based band") {
+    return "The predicted probability falls in the higher placeholder model-based band. This band is for interface review only and is not a clinical action threshold.";
   }
 
-  if (category === "Intermediate") {
-    return "This model-based estimate falls in the intermediate range using placeholder thresholds. It should be reviewed only in the context of model development and validation.";
+  if (category === "Intermediate placeholder model-based band") {
+    return "The predicted probability falls in the intermediate placeholder model-based band. This should be interpreted only as proof-of-concept research output.";
   }
 
-  return "This model-based estimate falls in the lower range using placeholder thresholds. It remains a research estimate and does not rule in or rule out Brugada-related clinical risk.";
+  return "The predicted probability falls in the lower placeholder model-based band. This remains a research estimate and does not rule in or rule out Brugada-related clinical risk.";
 }
 
 export function getContributingFactors(
   inputs: ModelInputs,
 ): ContributingFactor[] {
   const { coefficients } = modelConfig;
+  const sexModelValue = getSexModelValue(inputs.sex);
   const factors: ContributingFactor[] = [
     {
       label: "Baseline QRS duration",
       value: `${inputs.baselineQrs} ms`,
       contribution: coefficients.baselineQrs * inputs.baselineQrs,
-      direction: getContributionDirection(
+      contributionStrength: getContributionStrength(
         coefficients.baselineQrs * inputs.baselineQrs,
       ),
     },
     {
-      label: "Age at assessment",
-      value: `${inputs.age} years`,
-      contribution: coefficients.age * inputs.age,
-      direction: getContributionDirection(coefficients.age * inputs.age),
-    },
-    {
-      label: "Type 2/3 ECG pattern",
-      value: inputs.type23Ecg ? "Present" : "Absent",
-      contribution: coefficients.type23Ecg * (inputs.type23Ecg ? 1 : 0),
-      direction: getContributionDirection(
-        coefficients.type23Ecg * (inputs.type23Ecg ? 1 : 0),
+      label: "LASSO Clinical PGS",
+      value: `${inputs.lassoClinicalPgs.toFixed(2)} z-score`,
+      contribution: coefficients.lassoClinicalPgs * inputs.lassoClinicalPgs,
+      contributionStrength: getContributionStrength(
+        coefficients.lassoClinicalPgs * inputs.lassoClinicalPgs,
       ),
     },
     {
-      label: "Family history",
-      value: inputs.familyHistory ? "Present" : "Absent",
-      contribution: coefficients.familyHistory * (inputs.familyHistory ? 1 : 0),
-      direction: getContributionDirection(
-        coefficients.familyHistory * (inputs.familyHistory ? 1 : 0),
+      label: "Sex (model input)",
+      value: `${inputs.sex === "female" ? "Female" : "Male"} = ${sexModelValue}`,
+      contribution: coefficients.sex * sexModelValue,
+      contributionStrength: getContributionStrength(
+        coefficients.sex * sexModelValue,
       ),
     },
     {
-      label: "Polygenic score",
-      value: `${inputs.pgsScore.toFixed(1)} standardized units`,
-      contribution: coefficients.pgsScore * inputs.pgsScore,
-      direction: getContributionDirection(coefficients.pgsScore * inputs.pgsScore),
+      label: "Baseline type 2/3 Brugada ECG pattern",
+      value: inputs.baselineType2or3 ? "Present = 1" : "Absent = 0",
+      contribution:
+        coefficients.baselineType2or3 * (inputs.baselineType2or3 ? 1 : 0),
+      contributionStrength: getContributionStrength(
+        coefficients.baselineType2or3 * (inputs.baselineType2or3 ? 1 : 0),
+      ),
     },
     {
-      label: "Sex",
-      value: inputs.sex === "male" ? "Male" : "Female",
-      contribution: coefficients.maleSex * (inputs.sex === "male" ? 1 : 0),
-      direction: getContributionDirection(
-        coefficients.maleSex * (inputs.sex === "male" ? 1 : 0),
+      label: "Family history of Brugada syndrome",
+      value: inputs.baselineFamilyBrugada ? "Yes = 1" : "No = 0",
+      contribution:
+        coefficients.baselineFamilyBrugada *
+        (inputs.baselineFamilyBrugada ? 1 : 0),
+      contributionStrength: getContributionStrength(
+        coefficients.baselineFamilyBrugada *
+          (inputs.baselineFamilyBrugada ? 1 : 0),
       ),
     },
   ];
 
-  return factors
-    .sort(
-      (first, second) =>
-        Math.abs(second.contribution) - Math.abs(first.contribution),
-    )
-    .slice(0, 4);
+  return factors.sort(
+    (first, second) =>
+      Math.abs(second.contribution) - Math.abs(first.contribution),
+  );
 }
 
-function getContributionDirection(
+function getContributionStrength(
   contribution: number,
-): ContributingFactor["direction"] {
+): ContributingFactor["contributionStrength"] {
+  const magnitude = Math.abs(contribution);
+
+  if (magnitude < 0.05) {
+    return "No material contribution";
+  }
+
+  if (contribution >= 0.75) {
+    return "Strong positive contribution";
+  }
+
+  if (contribution >= 0.25) {
+    return "Moderate positive contribution";
+  }
+
   if (contribution > 0) {
-    return "Increases estimate";
+    return "Small positive contribution";
   }
 
-  if (contribution < 0) {
-    return "Decreases estimate";
+  if (contribution <= -0.25) {
+    return "Moderate negative contribution";
   }
 
-  return "No model contribution";
+  return "Small negative contribution";
 }
 
 export function calculateRisk(inputs: ModelInputs): CalculationResult {
