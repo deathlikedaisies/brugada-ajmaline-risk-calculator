@@ -43,7 +43,8 @@ export default function AboutPage() {
             with weighted predictor values to calculate a linear predictor, then
             applies the logistic function to return a predicted probability. It
             remains a proof-of-concept research implementation and is not
-            validated for routine clinical use.
+            validated for routine clinical use. This model reflects internal
+            performance only and has not undergone external validation.
           </p>
         </section>
 

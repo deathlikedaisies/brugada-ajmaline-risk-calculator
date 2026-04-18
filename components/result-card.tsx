@@ -12,30 +12,32 @@ export function ResultCard({ result }: ResultCardProps) {
       className="rounded-lg border border-slate-200 bg-white shadow-sm"
     >
       <div className="border-b border-slate-200 px-5 py-5 sm:px-6">
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-          <p className="text-xs font-semibold uppercase text-slate-500">
-            Model-based estimate
-          </p>
-          <p className="w-fit rounded-md border border-slate-200 px-2.5 py-1 text-xs font-medium text-slate-600">
-            Research only
-          </p>
-        </div>
+        <p className="text-xs font-semibold uppercase text-slate-500">
+          Model-based estimate
+        </p>
         <p className="mt-4 text-sm font-medium text-slate-600">
-          Predicted probability
+          Model-estimated probability
         </p>
         <h2
           id="risk-result-heading"
-          className="mt-1 text-5xl font-semibold tracking-normal text-slate-950"
+          className="mt-1 text-4xl font-medium tracking-normal text-slate-950"
         >
           {result.percentage.toFixed(1)}%
         </h2>
         <p className="mt-2 text-sm leading-6 text-slate-600">
+          This estimate is derived from an adjusted regression model and is
+          intended for research interpretation only.
+        </p>
+        <p className="mt-2 text-sm leading-6 text-slate-600">
           Adjusted logistic regression output for research interface review.
-          This estimate reflects the combined contribution of clinical, ECG, and
-          genetic predictors included in the adjusted model.
+          This model-based estimate reflects the combined contribution of
+          clinical, ECG, and genetic predictors included in the adjusted model.
         </p>
         <p className="mt-2 text-xs text-slate-500">
           Model discrimination (AUC): {modelConfig.auc.toFixed(2)}
+        </p>
+        <p className="mt-1 text-xs text-slate-500">
+          Derived from 1,129 individuals (Ajmaline cohort)
         </p>
       </div>
 
@@ -51,7 +53,7 @@ export function ResultCard({ result }: ResultCardProps) {
 
         <div className="py-4">
           <h3 className="text-base font-semibold text-slate-950">
-            Main contributing factors
+            Model contributors
           </h3>
           <dl className="mt-3 divide-y divide-slate-200 border-y border-slate-200">
             {result.contributingFactors.map((factor) => (
@@ -81,7 +83,7 @@ export function ResultCard({ result }: ResultCardProps) {
 
         <details className="py-4">
           <summary className="cursor-pointer px-4 py-3 text-sm font-semibold text-slate-900">
-            Why this estimate?
+            Model details
           </summary>
           <div className="px-4 pb-1 pt-3 text-sm leading-6 text-slate-700">
             <p>

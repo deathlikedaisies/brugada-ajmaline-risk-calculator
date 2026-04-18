@@ -47,11 +47,11 @@ export function CalculatorForm() {
               id="calculator-inputs-heading"
               className="mt-1 text-2xl font-semibold tracking-normal text-slate-950"
             >
-              Adjusted model predictors
+              Model inputs
             </h2>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
-              Enter values for the final adjusted logistic regression model.
-              The estimate updates immediately as values change.
+              Inputs correspond to variables included in the adjusted logistic
+              regression model.
             </p>
           </div>
           <div className="md:max-w-64">
