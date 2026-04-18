@@ -50,7 +50,7 @@ export function CalculatorForm() {
               Model inputs
             </h2>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
-              Inputs correspond to variables included in the adjusted logistic
+              Variables correspond to predictors included in the adjusted logistic
               regression model.
             </p>
           </div>
@@ -60,7 +60,7 @@ export function CalculatorForm() {
               onClick={() => setInputs(examplePatient)}
               className="w-full rounded-md border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-800 hover:bg-slate-100"
             >
-              Load demo patient
+              Load example profile
             </button>
             <p className="mt-2 text-xs leading-5 text-slate-500">
               {examplePatientLabel}
@@ -121,7 +121,7 @@ export function CalculatorForm() {
               />
             </InputGroup>
 
-            <InputGroup title="Genetic predictor">
+            <InputGroup title="Polygenic predictor">
               <NumberField
                 id="lasso-clinical-pgs"
                 label="LASSO Clinical PGS"

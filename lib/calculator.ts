@@ -14,12 +14,8 @@ export type ContributingFactor = {
   value: string;
   contribution: number;
   contributionStrength:
-    | "Strong positive contribution"
-    | "Moderate positive contribution"
-    | "Small positive contribution"
-    | "Moderate negative contribution"
-    | "Small negative contribution"
-    | "No material contribution";
+    | "Higher relative contribution"
+    | "Lower relative contribution";
 };
 
 export type CalculationResult = {
@@ -127,29 +123,9 @@ export function getContributingFactors(
 function getContributionStrength(
   contribution: number,
 ): ContributingFactor["contributionStrength"] {
-  const magnitude = Math.abs(contribution);
-
-  if (magnitude < 0.05) {
-    return "No material contribution";
-  }
-
-  if (contribution >= 0.75) {
-    return "Strong positive contribution";
-  }
-
-  if (contribution >= 0.25) {
-    return "Moderate positive contribution";
-  }
-
-  if (contribution > 0) {
-    return "Small positive contribution";
-  }
-
-  if (contribution <= -0.25) {
-    return "Moderate negative contribution";
-  }
-
-  return "Small negative contribution";
+  return Math.abs(contribution) >= 0.25
+    ? "Higher relative contribution"
+    : "Lower relative contribution";
 }
 
 export function calculateRisk(inputs: ModelInputs): CalculationResult {

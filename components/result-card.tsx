@@ -16,11 +16,11 @@ export function ResultCard({ result }: ResultCardProps) {
           Model-based estimate
         </p>
         <p className="mt-4 text-sm font-medium text-slate-600">
-          Model-estimated probability
+          Model-estimated probability (research output)
         </p>
         <h2
           id="risk-result-heading"
-          className="mt-1 text-4xl font-medium tracking-normal text-slate-950"
+          className="mt-1 text-3xl font-medium tracking-normal text-slate-950"
         >
           {result.percentage.toFixed(1)}%
         </h2>
@@ -37,14 +37,14 @@ export function ResultCard({ result }: ResultCardProps) {
           Model discrimination (AUC): {modelConfig.auc.toFixed(2)}
         </p>
         <p className="mt-1 text-xs text-slate-500">
-          Derived from 1,129 individuals (Ajmaline cohort)
+          Derived from n = 1,129 individuals in the ajmaline cohort
         </p>
       </div>
 
       <div className="divide-y divide-slate-200 px-5 sm:px-6">
         <div className="py-4">
           <h3 className="text-base font-semibold text-slate-950">
-            Plain-language interpretation
+            Interpretation
           </h3>
           <p className="mt-2 text-base leading-7 text-slate-700">
             {result.interpretation}
@@ -76,8 +76,8 @@ export function ResultCard({ result }: ResultCardProps) {
             ))}
           </dl>
           <p className="mt-2 text-xs leading-5 text-slate-500">
-            Listed by absolute contribution within the adjusted coefficient set.
-            Contribution strength labels are descriptive model internals.
+            Contribution labels reflect relative influence within the model and
+            are not causal or independent effect estimates.
           </p>
         </div>
 
@@ -140,6 +140,9 @@ export function ResultCard({ result }: ResultCardProps) {
             </dl>
           </div>
         </details>
+        <p className="py-4 text-xs text-slate-500">
+          Model performance: AUC = {modelConfig.auc.toFixed(3)} (apparent)
+        </p>
       </div>
     </section>
   );
