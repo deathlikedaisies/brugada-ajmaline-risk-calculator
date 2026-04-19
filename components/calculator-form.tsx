@@ -33,7 +33,7 @@ export function CalculatorForm() {
   }
 
   return (
-    <div className="grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1.04fr)_minmax(340px,0.96fr)] lg:items-start xl:gap-9">
+    <div className="grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1.04fr)_minmax(340px,0.96fr)] lg:items-start xl:gap-10">
       <section
         aria-labelledby="calculator-inputs-heading"
         className="min-w-0 overflow-hidden rounded-lg border border-zinc-200 bg-white shadow-[0_10px_30px_rgba(24,24,27,0.045)]"
@@ -45,20 +45,19 @@ export function CalculatorForm() {
             </p>
             <h2
               id="calculator-inputs-heading"
-              className="mt-2 text-2xl font-semibold text-zinc-950"
+              className="mt-2 text-xl font-semibold text-zinc-950 sm:text-2xl"
             >
               Model inputs
             </h2>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-zinc-600">
-              Variables correspond to predictors included in the adjusted logistic
-              regression model.
+              Predictors included in the adjusted logistic regression model.
             </p>
           </div>
           <div className="w-full md:max-w-64">
             <button
               type="button"
               onClick={() => setInputs(examplePatient)}
-              className="min-h-12 w-full rounded-md border border-zinc-300 bg-white px-4 py-2.5 text-sm font-semibold text-zinc-800 shadow-sm transition hover:border-zinc-400 hover:bg-zinc-50"
+              className="min-h-12 w-full rounded-md border border-zinc-200 bg-white px-4 py-2.5 text-sm font-medium text-zinc-700 shadow-sm transition hover:border-zinc-300 hover:bg-zinc-50 hover:text-zinc-950"
             >
               Load example case
             </button>
@@ -69,11 +68,11 @@ export function CalculatorForm() {
         </div>
 
         <form className="px-4 py-6 sm:px-6 sm:py-7">
-          <div className="grid gap-8">
+          <div className="grid gap-9">
             <InputGroup title="Patient characteristics">
               <RadioGroup
                 legend="Sex"
-                helperText="Sex (encoded for model input: male = 0, female = 1)."
+                helperText="Model coding: male = 0, female = 1."
                 name="sex"
                 options={[
                   { label: "Male = 0", value: "male" },
@@ -87,7 +86,7 @@ export function CalculatorForm() {
             <InputGroup title="Clinical history and baseline ECG">
               <BooleanGroup
                 legend="Baseline type 2/3 Brugada ECG pattern"
-                helperText="Absent = 0, Present = 1"
+                helperText="Absent = 0, present = 1."
                 name="baselineType2or3"
                 value={inputs.baselineType2or3}
                 trueLabel="Present"
@@ -98,7 +97,7 @@ export function CalculatorForm() {
               <NumberField
                 id="baseline-qrs"
                 label="Baseline QRS duration"
-                helperText="Enter baseline QRS duration in milliseconds."
+                helperText="Baseline QRS duration in milliseconds."
                 min={40}
                 max={220}
                 step={1}
@@ -110,7 +109,7 @@ export function CalculatorForm() {
 
               <BooleanGroup
                 legend="Family history of Brugada syndrome"
-                helperText="No = 0, Yes = 1"
+                helperText="No = 0, yes = 1."
                 name="baselineFamilyBrugada"
                 value={inputs.baselineFamilyBrugada}
                 trueLabel="Yes"
@@ -125,7 +124,7 @@ export function CalculatorForm() {
               <NumberField
                 id="lasso-clinical-pgs"
                 label="LASSO Clinical PGS"
-                helperText="Standardized composite polygenic score used in the adjusted model."
+                helperText="Standardized composite polygenic score."
                 min={-5}
                 max={5}
                 step={0.1}
@@ -141,7 +140,7 @@ export function CalculatorForm() {
 
       <div className="min-w-0 space-y-5 lg:sticky lg:top-24">
         <ResultCard result={result} />
-        <section className="rounded-lg border border-rose-200/80 bg-white p-4 text-sm leading-6 text-zinc-700 shadow-[0_6px_18px_rgba(24,24,27,0.035)] sm:p-5">
+        <section className="rounded-lg border border-rose-100 bg-rose-50/20 p-4 text-sm leading-6 text-zinc-700 shadow-[0_6px_18px_rgba(24,24,27,0.025)] sm:p-5">
           <h2 className="font-semibold text-zinc-950">Important limitation</h2>
           <p className="mt-2">
             This proof of concept uses adjusted model coefficients, while risk
@@ -167,7 +166,7 @@ function InputGroup({ title, children }: InputGroupProps) {
       <h3 className="border-b border-zinc-200 pb-2.5 text-xs font-semibold uppercase text-zinc-500">
         {title}
       </h3>
-      <div className="mt-5 grid gap-5">{children}</div>
+      <div className="mt-5 grid gap-6">{children}</div>
     </section>
   );
 }
@@ -249,11 +248,11 @@ function RadioGroup({
         {legend}
       </legend>
       <p className="mt-1 text-xs leading-5 text-zinc-500">{helperText}</p>
-      <div className="mt-2.5 grid grid-cols-2 gap-1 rounded-lg border border-zinc-200 bg-zinc-50 p-1">
+      <div className="mt-2.5 grid grid-cols-2 gap-1 rounded-lg border border-zinc-200 bg-zinc-100/70 p-1">
         {options.map((option) => (
           <label
             key={option.value}
-            className="flex min-h-12 cursor-pointer items-center justify-center rounded-md border border-transparent px-3 py-2.5 text-center text-sm font-semibold text-zinc-600 transition hover:text-zinc-950 has-[:checked]:border-teal-700/70 has-[:checked]:bg-white has-[:checked]:text-teal-950 has-[:checked]:shadow-sm has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-teal-700/20"
+            className="flex min-h-12 cursor-pointer items-center justify-center rounded-md border border-transparent px-3 py-2.5 text-center text-sm font-semibold text-zinc-500 transition hover:text-zinc-950 has-[:checked]:border-teal-700/80 has-[:checked]:bg-teal-50 has-[:checked]:text-teal-950 has-[:checked]:shadow-sm has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-teal-700/20"
           >
             <input
               type="radio"
@@ -301,11 +300,11 @@ function BooleanGroup({
         {legend}
       </legend>
       <p className="mt-1 text-xs leading-5 text-zinc-500">{helperText}</p>
-      <div className="mt-2.5 grid grid-cols-2 gap-1 rounded-lg border border-zinc-200 bg-zinc-50 p-1">
+      <div className="mt-2.5 grid grid-cols-2 gap-1 rounded-lg border border-zinc-200 bg-zinc-100/70 p-1">
         {options.map((option) => (
           <label
             key={option.label}
-            className="flex min-h-12 cursor-pointer items-center justify-center rounded-md border border-transparent px-3 py-2.5 text-center text-sm font-semibold text-zinc-600 transition hover:text-zinc-950 has-[:checked]:border-teal-700/70 has-[:checked]:bg-white has-[:checked]:text-teal-950 has-[:checked]:shadow-sm has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-teal-700/20"
+            className="flex min-h-12 cursor-pointer items-center justify-center rounded-md border border-transparent px-3 py-2.5 text-center text-sm font-semibold text-zinc-500 transition hover:text-zinc-950 has-[:checked]:border-teal-700/80 has-[:checked]:bg-teal-50 has-[:checked]:text-teal-950 has-[:checked]:shadow-sm has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-teal-700/20"
           >
             <input
               type="radio"

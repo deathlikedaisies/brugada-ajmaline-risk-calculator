@@ -9,38 +9,37 @@ export function ResultCard({ result }: ResultCardProps) {
   return (
     <section
       aria-labelledby="risk-result-heading"
-      className="min-w-0 overflow-hidden rounded-lg border border-teal-900/15 bg-white shadow-[0_18px_48px_rgba(24,24,27,0.095)]"
+      className="min-w-0 overflow-hidden rounded-lg border border-teal-900/15 bg-white shadow-[0_20px_52px_rgba(24,24,27,0.1)]"
     >
-      <div className="bg-teal-50/45 px-4 py-6 sm:px-6 sm:py-7">
+      <div className="bg-teal-50/45 px-4 py-7 sm:px-6 sm:py-8">
         <p className="text-xs font-semibold uppercase text-teal-900">
           Model-based estimate
         </p>
-        <p className="mt-6 text-sm font-medium text-zinc-600">
-          Model-estimated probability (research output)
+        <p className="mt-7 text-sm font-medium text-zinc-500">
+          Estimated probability
         </p>
         <h2
           id="risk-result-heading"
-          className="mt-2 text-6xl font-semibold leading-none text-zinc-950 sm:text-7xl"
+          className="mt-3 text-7xl font-semibold leading-none text-zinc-950 sm:text-8xl"
         >
           {result.percentage.toFixed(1)}%
         </h2>
-        <div className="mt-5 h-1.5 overflow-hidden rounded-full bg-white/80 ring-1 ring-teal-900/10">
+        <div className="mt-6 h-1.5 overflow-hidden rounded-full bg-white/80 ring-1 ring-teal-900/10">
           <div
-            className="h-full rounded-full bg-teal-700/75"
+            className="h-full rounded-full bg-teal-700/65 transition-[width] duration-300 ease-out"
             style={{ width: `${Math.min(result.percentage, 100)}%` }}
           />
         </div>
       </div>
 
-      <div className="border-y border-zinc-200 px-4 py-5 sm:px-6">
+      <div className="border-y border-zinc-200 px-4 py-4 sm:px-6">
         <p className="text-sm leading-6 text-zinc-600">
-          This value represents a model-derived probability based on internal
-          model performance and is intended for research interpretation.
+          Relative model-based estimate within this dataset. Research
+          interpretation only.
         </p>
         <p className="mt-2 text-sm leading-6 text-zinc-600">
-          Adjusted logistic regression output for research interface review.
-          This model-based estimate reflects the combined contribution of
-          clinical, ECG, and genetic predictors included in the adjusted model.
+          Combines the entered clinical, ECG, and genetic predictors using the
+          adjusted logistic model.
         </p>
         <div className="mt-4 grid gap-2 text-xs text-zinc-500 sm:grid-cols-2">
           <p className="rounded-md border border-zinc-200 bg-white px-3 py-2">
@@ -57,7 +56,7 @@ export function ResultCard({ result }: ResultCardProps) {
           <h3 className="text-sm font-semibold text-zinc-950">
             Interpretation
           </h3>
-          <p className="mt-2 text-sm leading-7 text-zinc-700">
+          <p className="mt-2 text-sm leading-6 text-zinc-700">
             {result.interpretation}
           </p>
         </div>
@@ -87,8 +86,8 @@ export function ResultCard({ result }: ResultCardProps) {
             ))}
           </dl>
           <p className="mt-3 text-xs leading-5 text-zinc-500">
-            Displayed contributions reflect model coefficients and input values
-            and should not be interpreted as independent or causal effects.
+            Contributions reflect coefficients and inputs; they are not causal
+            effects.
           </p>
         </div>
 
