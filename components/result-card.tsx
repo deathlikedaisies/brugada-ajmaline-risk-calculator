@@ -1,6 +1,5 @@
 import type { CalculationResult } from "@/lib/calculator";
 import { modelConfig } from "@/lib/model-config";
-import { BrandLogo } from "./brand-logo";
 
 type ResultCardProps = {
   result: CalculationResult;
@@ -10,27 +9,24 @@ export function ResultCard({ result }: ResultCardProps) {
   return (
     <section
       aria-labelledby="risk-result-heading"
-      className="min-w-0 overflow-hidden rounded-lg border border-[#8f3f3f]/25 bg-white shadow-[0_24px_60px_rgba(24,24,27,0.12)]"
+      className="min-w-0 overflow-hidden rounded-lg border border-[#8f3f3f]/20 bg-white shadow-[0_18px_48px_rgba(24,24,27,0.095)]"
     >
-      <div className="bg-rose-50/45 px-4 py-8 sm:px-7 sm:py-10">
-        <div className="flex items-center justify-center gap-3">
-          <BrandLogo className="size-9" />
-          <p className="text-xs font-semibold uppercase text-[#743434]">
-            Model-based estimate
-          </p>
-        </div>
-        <p className="mt-8 text-center text-xs font-semibold uppercase text-zinc-500">
+      <div className="bg-rose-50/45 px-4 py-7 sm:px-7 sm:py-9">
+        <p className="text-center text-xs font-semibold uppercase text-[#743434]">
+          Model-based estimate
+        </p>
+        <p className="mt-7 text-center text-xs font-semibold uppercase text-zinc-500">
           Estimated probability
         </p>
         <h2
           id="risk-result-heading"
-          className="mt-3 text-center text-6xl font-bold leading-none text-zinc-950 sm:text-8xl"
+          className="mt-3 text-center text-6xl font-semibold leading-none text-zinc-950 sm:text-8xl"
         >
           {result.percentage.toFixed(1)}%
         </h2>
-        <div className="mt-7 h-2 overflow-hidden rounded-full bg-white/85 ring-1 ring-[#8f3f3f]/15">
+        <div className="mt-7 h-1.5 overflow-hidden rounded-full bg-white/85 ring-1 ring-[#8f3f3f]/15">
           <div
-            className="h-full rounded-full bg-[#8f3f3f]/70 transition-all duration-500 ease-out"
+            className="h-full rounded-full bg-[#8f3f3f]/65 transition-all duration-300 ease-out"
             style={{ width: `${Math.min(result.percentage, 100)}%` }}
           />
         </div>

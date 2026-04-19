@@ -145,8 +145,8 @@ export function CalculatorForm() {
         <section className="rounded-lg border border-[#eadfdf] bg-rose-50/20 p-4 text-sm leading-6 text-zinc-700 shadow-[0_6px_18px_rgba(24,24,27,0.025)] sm:p-5">
           <h2 className="font-semibold text-zinc-950">Important limitation</h2>
           <p className="mt-2">
-            This proof of concept uses adjusted model coefficients, while risk
-            bands remain placeholder model-based bands. The output is a
+            This proof of concept uses adjusted model coefficients, while
+            category bands remain placeholder model-based bands. The output is a
             model-based research estimate only; it must not guide patient
             management or replace clinical guidelines, electrophysiology review,
             or physician judgment.
