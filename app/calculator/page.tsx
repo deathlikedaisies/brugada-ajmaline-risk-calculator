@@ -4,7 +4,7 @@ import { CalculatorForm } from "@/components/calculator-form";
 export const metadata: Metadata = {
   title: "Calculator | BARC",
   description:
-    "Proof-of-concept Brugada Ajmaline Risk Calculator (BARC).",
+    "Proof-of-concept Type 1 Brugada Ajmaline Response Calculator (BARC).",
 };
 
 export default function CalculatorPage() {
@@ -12,11 +12,12 @@ export default function CalculatorPage() {
     <div className="mx-auto max-w-6xl px-4 py-4 sm:px-6 sm:py-10 lg:px-8">
       <div className="mb-6 rounded-lg border border-zinc-200 bg-white px-4 py-4 shadow-[0_10px_26px_rgba(24,24,27,0.04)] sm:mb-8 sm:px-6 sm:py-6">
         <div className="max-w-3xl">
-          <p className="text-xs font-semibold uppercase text-teal-800">
+          <p className="text-xs font-semibold uppercase text-[#8f3f3f]">
             Proof-of-concept research calculator
           </p>
           <h1 className="mt-3 text-2xl font-semibold leading-tight text-zinc-950 sm:mt-4 sm:text-4xl">
-            Brugada Ajmaline Risk Calculator (BARC)
+            Type 1 Brugada Ajmaline Response Calculator{" "}
+            <span className="text-[#8f3f3f]">(BARC)</span>
           </h1>
           <p className="mt-3 text-sm leading-6 text-zinc-700 sm:mt-4 sm:text-lg sm:leading-8">
             <span className="sm:hidden">

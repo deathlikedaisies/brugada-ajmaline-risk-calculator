@@ -1,15 +1,20 @@
 import Link from "next/link";
+import { BrandLogo } from "@/components/brand-logo";
 
 export default function Home() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-20 lg:px-8">
       <section className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
         <div className="max-w-3xl">
-          <p className="text-xs font-semibold uppercase text-teal-800">
-            Proof-of-concept research calculator
-          </p>
-          <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-tight text-zinc-950 sm:text-5xl lg:text-6xl">
-            Brugada Ajmaline Risk Calculator (BARC)
+          <div className="mb-5 flex items-center gap-3">
+            <BrandLogo className="size-11" />
+            <p className="text-xs font-semibold uppercase text-[#8f3f3f]">
+              Proof-of-concept research calculator
+            </p>
+          </div>
+          <h1 className="max-w-4xl text-4xl font-semibold leading-tight text-zinc-950 sm:text-5xl lg:text-6xl">
+            Type 1 Brugada Ajmaline Response Calculator{" "}
+            <span className="text-[#8f3f3f]">(BARC)</span>
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-zinc-700 sm:text-lg">
             BARC is a proof-of-concept research interface for presenting an
@@ -21,7 +26,7 @@ export default function Home() {
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Link
               href="/calculator"
-              className="inline-flex min-h-12 items-center justify-center rounded-md bg-teal-800 px-5 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-teal-900"
+              className="inline-flex min-h-12 items-center justify-center rounded-md bg-[#8f3f3f] px-5 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-[#743434]"
             >
               Open calculator
             </Link>
@@ -89,7 +94,7 @@ export default function Home() {
             key={item.title}
             className="min-h-full rounded-lg border border-zinc-200 bg-white p-6 shadow-[0_10px_30px_rgba(24,24,27,0.045)]"
           >
-            <p className="text-xs font-semibold uppercase text-teal-800">
+            <p className="text-xs font-semibold uppercase text-[#8f3f3f]">
               {item.eyebrow}
             </p>
             <h2 className="mt-3 text-lg font-semibold text-zinc-950">

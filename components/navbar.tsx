@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { BrandLogo } from "./brand-logo";
 
 const navigation = [
   { href: "/calculator", label: "Calculator" },
@@ -22,13 +23,13 @@ export function Navbar() {
           href="/"
           className="group flex min-w-0 max-w-full items-start gap-3 text-base font-bold text-zinc-950 sm:items-center sm:text-lg"
         >
-          <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-md border border-teal-900/15 bg-teal-50 text-sm font-bold text-teal-950 shadow-sm transition group-hover:border-teal-800/30">
-            B
+          <span className="shrink-0 transition group-hover:opacity-90">
+            <BrandLogo />
           </span>
           <span className="min-w-0">
-            <span className="block leading-5">BARC</span>
+            <span className="block leading-5 text-[#743434]">BARC</span>
             <span className="mt-0.5 block text-sm font-normal leading-5 text-zinc-500 sm:inline sm:text-base">
-              Proof-of-concept research calculator
+              Type 1 Brugada response calculator
             </span>
           </span>
         </Link>
@@ -40,7 +41,7 @@ export function Navbar() {
               aria-current={pathname === item.href ? "page" : undefined}
               className={`rounded-md px-3.5 py-2 transition hover:bg-zinc-100 hover:text-zinc-950 focus-visible:bg-zinc-100 ${
                 pathname === item.href
-                  ? "bg-teal-50 text-teal-950 ring-1 ring-teal-900/10"
+                  ? "bg-rose-50 text-[#743434] ring-1 ring-[#8f3f3f]/15"
                   : ""
               }`}
             >

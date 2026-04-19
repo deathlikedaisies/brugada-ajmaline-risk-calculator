@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Brugada Ajmaline Risk Calculator (BARC)",
+  title: "Type 1 Brugada Ajmaline Response Calculator (BARC)",
   description:
-    "A proof-of-concept model-based Brugada ajmaline risk calculator.",
+    "A proof-of-concept model-based Type 1 Brugada ajmaline response calculator.",
 };
 
 export default function RootLayout({
@@ -30,7 +30,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-[#f7f8f7] text-zinc-950">
+      <body className="flex min-h-full flex-col bg-[#fbfaf9] text-zinc-950">
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

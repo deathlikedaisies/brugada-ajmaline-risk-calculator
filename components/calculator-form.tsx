@@ -205,7 +205,7 @@ function NumberField({
         {label}
       </label>
       <p className="mt-1 text-xs leading-5 text-zinc-500">{helperText}</p>
-      <div className="mt-2.5 flex min-h-12 overflow-hidden rounded-md border border-zinc-300 bg-white shadow-sm transition focus-within:border-teal-700 focus-within:ring-2 focus-within:ring-teal-700/15">
+      <div className="mt-2.5 flex min-h-12 overflow-hidden rounded-md border border-zinc-300 bg-white shadow-sm transition focus-within:border-[#8f3f3f] focus-within:ring-2 focus-within:ring-[#8f3f3f]/15">
         <input
           id={id}
           type="number"
@@ -252,7 +252,7 @@ function RadioGroup({
         {options.map((option) => (
           <label
             key={option.value}
-            className="flex min-h-12 cursor-pointer items-center justify-center rounded-md border border-transparent px-3 py-2.5 text-center text-sm font-semibold text-zinc-500 transition hover:text-zinc-950 has-[:checked]:border-teal-700/80 has-[:checked]:bg-teal-50 has-[:checked]:text-teal-950 has-[:checked]:shadow-sm has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-teal-700/20"
+            className="flex min-h-12 cursor-pointer items-center justify-center rounded-md border border-transparent px-3 py-2.5 text-center text-sm font-semibold text-zinc-500 transition hover:text-zinc-950 has-[:checked]:border-[#8f3f3f]/80 has-[:checked]:bg-rose-50 has-[:checked]:text-[#743434] has-[:checked]:shadow-sm has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-[#8f3f3f]/20"
           >
             <input
               type="radio"
@@ -304,7 +304,7 @@ function BooleanGroup({
         {options.map((option) => (
           <label
             key={option.label}
-            className="flex min-h-12 cursor-pointer items-center justify-center rounded-md border border-transparent px-3 py-2.5 text-center text-sm font-semibold text-zinc-500 transition hover:text-zinc-950 has-[:checked]:border-teal-700/80 has-[:checked]:bg-teal-50 has-[:checked]:text-teal-950 has-[:checked]:shadow-sm has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-teal-700/20"
+            className="flex min-h-12 cursor-pointer items-center justify-center rounded-md border border-transparent px-3 py-2.5 text-center text-sm font-semibold text-zinc-500 transition hover:text-zinc-950 has-[:checked]:border-[#8f3f3f]/80 has-[:checked]:bg-rose-50 has-[:checked]:text-[#743434] has-[:checked]:shadow-sm has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-[#8f3f3f]/20"
           >
             <input
               type="radio"

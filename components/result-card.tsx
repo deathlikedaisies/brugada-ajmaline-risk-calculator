@@ -9,10 +9,10 @@ export function ResultCard({ result }: ResultCardProps) {
   return (
     <section
       aria-labelledby="risk-result-heading"
-      className="min-w-0 overflow-hidden rounded-lg border border-teal-900/15 bg-white shadow-[0_20px_52px_rgba(24,24,27,0.1)]"
+      className="min-w-0 overflow-hidden rounded-lg border border-[#8f3f3f]/15 bg-white shadow-[0_20px_52px_rgba(24,24,27,0.1)]"
     >
-      <div className="bg-teal-50/45 px-4 py-7 sm:px-6 sm:py-8">
-        <p className="text-xs font-semibold uppercase text-teal-900">
+      <div className="bg-rose-50/45 px-4 py-7 sm:px-6 sm:py-8">
+        <p className="text-xs font-semibold uppercase text-[#743434]">
           Model-based estimate
         </p>
         <p className="mt-7 text-sm font-medium text-zinc-500">
@@ -24,9 +24,9 @@ export function ResultCard({ result }: ResultCardProps) {
         >
           {result.percentage.toFixed(1)}%
         </h2>
-        <div className="mt-6 h-1.5 overflow-hidden rounded-full bg-white/80 ring-1 ring-teal-900/10">
+        <div className="mt-6 h-1.5 overflow-hidden rounded-full bg-white/80 ring-1 ring-[#8f3f3f]/10">
           <div
-            className="h-full rounded-full bg-teal-700/65 transition-[width] duration-300 ease-out"
+            className="h-full rounded-full bg-[#8f3f3f]/65 transition-[width] duration-300 ease-out"
             style={{ width: `${Math.min(result.percentage, 100)}%` }}
           />
         </div>
@@ -92,7 +92,7 @@ export function ResultCard({ result }: ResultCardProps) {
         </div>
 
         <details className="py-5">
-          <summary className="cursor-pointer rounded-md border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-900 marker:text-teal-800">
+          <summary className="cursor-pointer rounded-md border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-900 marker:text-[#8f3f3f]">
             Model details
           </summary>
           <div className="min-w-0 px-1 pb-1 pt-4 text-sm leading-6 text-zinc-700 sm:px-4">

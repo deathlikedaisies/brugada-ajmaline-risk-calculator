@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f7f8f7;
-  --foreground: #16211f;
+  --background: #fbfaf9;
+  --foreground: #211818;
   --surface: #ffffff;
-  --surface-muted: #f1f4f3;
-  --border-subtle: #d9e0de;
-  --accent: #0f766e;
-  --accent-strong: #115e59;
+  --surface-muted: #f7f2f2;
+  --border-subtle: #eadfdf;
+  --accent: #8f3f3f;
+  --accent-strong: #743434;
 }
 
 @theme inline {
@@ -30,8 +30,8 @@ main {
 }
 
 ::selection {
-  background: #ccfbf1;
-  color: #16211f;
+  background: #f1d6d6;
+  color: #211818;
 }
 
 button,

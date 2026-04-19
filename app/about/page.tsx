@@ -17,7 +17,7 @@ export default function AboutPage() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-      <p className="text-xs font-semibold uppercase text-teal-800">
+      <p className="text-xs font-semibold uppercase text-[#8f3f3f]">
         Model explanation
       </p>
       <h1 className="mt-4 text-3xl font-semibold leading-tight text-zinc-950 sm:text-4xl">
