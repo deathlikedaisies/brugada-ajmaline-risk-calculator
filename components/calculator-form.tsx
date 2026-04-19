@@ -33,7 +33,7 @@ export function CalculatorForm() {
   }
 
   return (
-    <div className="grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1.04fr)_minmax(340px,0.96fr)] lg:items-start xl:gap-10">
+    <div className="grid min-w-0 gap-10 lg:grid-cols-[minmax(0,1.04fr)_minmax(340px,0.96fr)] lg:items-start xl:gap-10">
       <section
         aria-labelledby="calculator-inputs-heading"
         className="min-w-0 overflow-hidden rounded-lg border border-[#eadfdf] bg-white shadow-[0_10px_30px_rgba(24,24,27,0.045)]"
@@ -139,7 +139,9 @@ export function CalculatorForm() {
       </section>
 
       <div className="min-w-0 space-y-5 lg:sticky lg:top-24">
-        <ResultCard result={result} />
+        <div className="rounded-lg border border-[#eadfdf] bg-rose-50/30 p-3 shadow-[0_16px_44px_rgba(24,24,27,0.06)] sm:p-4">
+          <ResultCard result={result} />
+        </div>
         <section className="rounded-lg border border-[#eadfdf] bg-rose-50/20 p-4 text-sm leading-6 text-zinc-700 shadow-[0_6px_18px_rgba(24,24,27,0.025)] sm:p-5">
           <h2 className="font-semibold text-zinc-950">Important limitation</h2>
           <p className="mt-2">

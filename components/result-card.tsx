@@ -10,58 +10,54 @@ export function ResultCard({ result }: ResultCardProps) {
   return (
     <section
       aria-labelledby="risk-result-heading"
-      className="min-w-0 overflow-hidden rounded-lg border border-[#eadfdf] bg-white shadow-[0_20px_52px_rgba(24,24,27,0.1)]"
+      className="min-w-0 overflow-hidden rounded-lg border border-[#8f3f3f]/25 bg-white shadow-[0_24px_60px_rgba(24,24,27,0.12)]"
     >
-      <div className="bg-rose-50/45 px-4 py-7 sm:px-6 sm:py-8">
-        <div className="flex items-center gap-3">
+      <div className="bg-rose-50/45 px-4 py-8 sm:px-7 sm:py-10">
+        <div className="flex items-center justify-center gap-3">
           <BrandLogo className="size-9" />
           <p className="text-xs font-semibold uppercase text-[#743434]">
             Model-based estimate
           </p>
         </div>
-        <p className="mt-7 text-sm font-medium text-zinc-500">
+        <p className="mt-8 text-center text-xs font-semibold uppercase text-zinc-500">
           Estimated probability
         </p>
         <h2
           id="risk-result-heading"
-          className="mt-3 text-7xl font-semibold leading-none text-zinc-950 sm:text-8xl"
+          className="mt-3 text-center text-6xl font-bold leading-none text-zinc-950 sm:text-8xl"
         >
           {result.percentage.toFixed(1)}%
         </h2>
-        <div className="mt-6 h-1.5 overflow-hidden rounded-full bg-white/80 ring-1 ring-[#8f3f3f]/15">
+        <div className="mt-7 h-2 overflow-hidden rounded-full bg-white/85 ring-1 ring-[#8f3f3f]/15">
           <div
-            className="h-full rounded-full bg-[#8f3f3f]/65 transition-[width] duration-300 ease-out"
+            className="h-full rounded-full bg-[#8f3f3f]/70 transition-all duration-500 ease-out"
             style={{ width: `${Math.min(result.percentage, 100)}%` }}
           />
         </div>
-      </div>
-
-      <div className="border-y border-[#eadfdf] px-4 py-4 sm:px-6">
-        <p className="text-sm leading-6 text-zinc-600">
-          Relative model-based estimate within this dataset. Research
-          interpretation only.
+        <p className="mx-auto mt-5 max-w-sm text-center text-sm leading-6 text-zinc-600">
+          Model-derived probability based on internal performance.
         </p>
-        <p className="mt-2 text-sm leading-6 text-zinc-600">
-          Combines the entered clinical, ECG, and genetic predictors using the
-          adjusted logistic model.
-        </p>
-        <div className="mt-4 grid gap-2 text-xs text-zinc-500 sm:grid-cols-2">
-          <p className="rounded-md border border-zinc-200 bg-white px-3 py-2">
-            Model discrimination (apparent AUC): {modelConfig.auc.toFixed(2)}
-          </p>
-          <p className="rounded-md border border-zinc-200 bg-white px-3 py-2">
-            Derived from n = 1,129 individuals in the ajmaline cohort
-          </p>
+        <div className="mt-5 flex flex-wrap justify-center gap-2">
+          <span className="rounded-full border border-[#eadfdf] bg-white px-3 py-1.5 text-xs font-medium text-zinc-600">
+            AUC: {modelConfig.auc.toFixed(2)}
+          </span>
+          <span className="rounded-full border border-[#eadfdf] bg-white px-3 py-1.5 text-xs font-medium text-zinc-600">
+            n = 1,129 (ajmaline cohort)
+          </span>
         </div>
       </div>
 
-      <div className="divide-y divide-zinc-200 px-4 sm:px-6">
+      <div className="divide-y divide-[#eadfdf] px-4 sm:px-7">
         <div className="py-5">
           <h3 className="text-sm font-semibold text-[#743434]">
             Interpretation
           </h3>
           <p className="mt-2 text-sm leading-6 text-zinc-700">
             {result.interpretation}
+          </p>
+          <p className="mt-2 text-sm leading-6 text-zinc-600">
+            Combines the entered clinical, ECG, and genetic predictors using the
+            adjusted logistic model.
           </p>
         </div>
 
