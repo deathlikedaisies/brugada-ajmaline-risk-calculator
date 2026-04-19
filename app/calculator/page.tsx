@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BrandLogo } from "@/components/brand-logo";
 import { CalculatorForm } from "@/components/calculator-form";
 
 export const metadata: Metadata = {
@@ -9,13 +10,16 @@ export const metadata: Metadata = {
 
 export default function CalculatorPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-4 sm:px-6 sm:py-10 lg:px-8">
-      <div className="mb-6 rounded-lg border border-zinc-200 bg-white px-4 py-4 shadow-[0_10px_26px_rgba(24,24,27,0.04)] sm:mb-8 sm:px-6 sm:py-6">
+    <div className="mx-auto max-w-6xl px-4 py-5 sm:px-6 sm:py-12 lg:px-8">
+      <div className="mb-7 rounded-lg border border-[#eadfdf] bg-white px-4 py-5 shadow-[0_18px_50px_rgba(24,24,27,0.055)] sm:mb-8 sm:px-6 sm:py-6">
         <div className="max-w-3xl">
-          <p className="text-xs font-semibold uppercase text-[#8f3f3f]">
-            Proof-of-concept research calculator
-          </p>
-          <h1 className="mt-3 text-2xl font-semibold leading-tight text-zinc-950 sm:mt-4 sm:text-4xl">
+          <div className="mb-4 flex items-center gap-3">
+            <BrandLogo className="size-10" />
+            <p className="text-xs font-semibold uppercase text-[#8f3f3f]">
+              Proof-of-concept research calculator
+            </p>
+          </div>
+          <h1 className="text-2xl font-semibold leading-tight text-zinc-950 sm:text-4xl">
             Type 1 Brugada Ajmaline Response Calculator{" "}
             <span className="text-[#8f3f3f]">(BARC)</span>
           </h1>
@@ -31,7 +35,7 @@ export default function CalculatorPage() {
             </span>
           </p>
         </div>
-        <div className="mt-4 border-t border-zinc-200 pt-3 text-xs leading-5 text-zinc-500 sm:mt-6 sm:pt-4 sm:text-sm">
+        <div className="mt-5 border-t border-[#eadfdf] pt-3 text-xs leading-5 text-zinc-500 sm:mt-6 sm:pt-4 sm:text-sm">
           <p>
             Adjusted coefficients. Browser-only calculation. Research interface
             review only.

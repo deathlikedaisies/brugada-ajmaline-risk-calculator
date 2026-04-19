@@ -1,5 +1,6 @@
 import type { CalculationResult } from "@/lib/calculator";
 import { modelConfig } from "@/lib/model-config";
+import { BrandLogo } from "./brand-logo";
 
 type ResultCardProps = {
   result: CalculationResult;
@@ -9,12 +10,15 @@ export function ResultCard({ result }: ResultCardProps) {
   return (
     <section
       aria-labelledby="risk-result-heading"
-      className="min-w-0 overflow-hidden rounded-lg border border-[#8f3f3f]/15 bg-white shadow-[0_20px_52px_rgba(24,24,27,0.1)]"
+      className="min-w-0 overflow-hidden rounded-lg border border-[#eadfdf] bg-white shadow-[0_20px_52px_rgba(24,24,27,0.1)]"
     >
       <div className="bg-rose-50/45 px-4 py-7 sm:px-6 sm:py-8">
-        <p className="text-xs font-semibold uppercase text-[#743434]">
-          Model-based estimate
-        </p>
+        <div className="flex items-center gap-3">
+          <BrandLogo className="size-9" />
+          <p className="text-xs font-semibold uppercase text-[#743434]">
+            Model-based estimate
+          </p>
+        </div>
         <p className="mt-7 text-sm font-medium text-zinc-500">
           Estimated probability
         </p>
@@ -24,7 +28,7 @@ export function ResultCard({ result }: ResultCardProps) {
         >
           {result.percentage.toFixed(1)}%
         </h2>
-        <div className="mt-6 h-1.5 overflow-hidden rounded-full bg-white/80 ring-1 ring-[#8f3f3f]/10">
+        <div className="mt-6 h-1.5 overflow-hidden rounded-full bg-white/80 ring-1 ring-[#8f3f3f]/15">
           <div
             className="h-full rounded-full bg-[#8f3f3f]/65 transition-[width] duration-300 ease-out"
             style={{ width: `${Math.min(result.percentage, 100)}%` }}
@@ -32,7 +36,7 @@ export function ResultCard({ result }: ResultCardProps) {
         </div>
       </div>
 
-      <div className="border-y border-zinc-200 px-4 py-4 sm:px-6">
+      <div className="border-y border-[#eadfdf] px-4 py-4 sm:px-6">
         <p className="text-sm leading-6 text-zinc-600">
           Relative model-based estimate within this dataset. Research
           interpretation only.
@@ -53,7 +57,7 @@ export function ResultCard({ result }: ResultCardProps) {
 
       <div className="divide-y divide-zinc-200 px-4 sm:px-6">
         <div className="py-5">
-          <h3 className="text-sm font-semibold text-zinc-950">
+          <h3 className="text-sm font-semibold text-[#743434]">
             Interpretation
           </h3>
           <p className="mt-2 text-sm leading-6 text-zinc-700">
@@ -62,10 +66,10 @@ export function ResultCard({ result }: ResultCardProps) {
         </div>
 
         <div className="py-5">
-          <h3 className="text-sm font-semibold text-zinc-950">
+          <h3 className="text-sm font-semibold text-[#743434]">
             Model terms
           </h3>
-          <dl className="mt-3 divide-y divide-zinc-200 rounded-md border border-zinc-200 bg-zinc-50/40">
+          <dl className="mt-3 divide-y divide-[#eadfdf] rounded-md border border-[#eadfdf] bg-rose-50/20">
             {result.contributingFactors.map((factor) => (
               <div
                 key={factor.label}
@@ -92,7 +96,7 @@ export function ResultCard({ result }: ResultCardProps) {
         </div>
 
         <details className="py-5">
-          <summary className="cursor-pointer rounded-md border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-900 marker:text-[#8f3f3f]">
+          <summary className="cursor-pointer rounded-md border border-[#eadfdf] bg-rose-50/25 px-4 py-3 text-sm font-semibold text-[#743434] marker:text-[#8f3f3f]">
             Model details
           </summary>
           <div className="min-w-0 px-1 pb-1 pt-4 text-sm leading-6 text-zinc-700 sm:px-4">
