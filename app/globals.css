@@ -46,6 +46,11 @@ textarea {
   outline-offset: 3px;
 }
 
+.accent-letter {
+  color: var(--accent);
+  font-weight: 600;
+}
+
 input[type="number"] {
   -moz-appearance: textfield;
 }
