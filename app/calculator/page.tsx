@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { BrandLogo } from "@/components/brand-logo";
+import { BrandedToolTitle } from "@/components/branded-tool-title";
 import { CalculatorForm } from "@/components/calculator-form";
 
 export const metadata: Metadata = {
@@ -20,8 +21,7 @@ export default function CalculatorPage() {
             </p>
           </div>
           <h1 className="text-2xl font-semibold leading-tight text-zinc-950 sm:text-4xl">
-            Type 1 Brugada Ajmaline Response Calculator{" "}
-            <span className="text-[#8f3f3f]">(BARC)</span>
+            <BrandedToolTitle />
           </h1>
           <p className="mt-3 text-sm leading-6 text-zinc-700 sm:mt-4 sm:text-lg sm:leading-8">
             <span className="sm:hidden">

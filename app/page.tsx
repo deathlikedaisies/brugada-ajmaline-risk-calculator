@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BrandLogo } from "@/components/brand-logo";
+import { BrandedToolTitle } from "@/components/branded-tool-title";
 
 export default function Home() {
   return (
@@ -13,20 +14,7 @@ export default function Home() {
             </p>
           </div>
           <h1 className="max-w-4xl text-4xl font-semibold leading-tight text-zinc-950 sm:text-5xl lg:text-6xl">
-            Type 1{" "}
-            <span className="inline-block whitespace-nowrap">
-              <strong className="accent-letter">B</strong>rugada
-            </span>{" "}
-            <span className="inline-block whitespace-nowrap">
-              <strong className="accent-letter">A</strong>jmaline
-            </span>{" "}
-            <span className="inline-block whitespace-nowrap">
-              <strong className="accent-letter">R</strong>esponse
-            </span>{" "}
-            <span className="inline-block whitespace-nowrap">
-              <strong className="accent-letter">C</strong>alculator
-            </span>{" "}
-            <span className="text-[#8f3f3f]">(BARC)</span>
+            <BrandedToolTitle />
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-zinc-700 sm:text-lg">
             BARC is a proof-of-concept research interface for presenting an

@@ -125,6 +125,10 @@ export default function AboutPage() {
           </dl>
         </section>
 
+        <p className="px-1 text-sm leading-6 text-zinc-500">
+          Created by Dominic S Zimmerman et al.
+        </p>
+
         <section className="rounded-lg border border-rose-200 bg-white p-6 shadow-[0_10px_30px_rgba(24,24,27,0.045)]">
           <h2 className="text-xl font-semibold text-zinc-950">
             Major limitations

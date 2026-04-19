@@ -35,6 +35,12 @@ export function BrandLogo({ className = "size-9" }: BrandLogoProps) {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
+      <g fill="#743434">
+        <circle cx="12.1" cy="20" r="1" />
+        <circle cx="16.7" cy="16.5" r="1" />
+        <circle cx="19.4" cy="23.6" r="1" />
+        <circle cx="21.4" cy="19.1" r="1" />
+      </g>
     </svg>
   );
 }
