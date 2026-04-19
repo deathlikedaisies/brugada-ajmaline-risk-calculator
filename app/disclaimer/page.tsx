@@ -7,16 +7,16 @@ export const metadata: Metadata = {
 
 export default function DisclaimerPage() {
   return (
-    <div className="mx-auto max-w-4xl px-5 py-12 lg:px-8">
-      <p className="text-xs font-semibold uppercase text-cyan-800">
+    <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <p className="text-xs font-semibold uppercase text-teal-800">
         Research-use disclaimer
       </p>
-      <h1 className="mt-3 text-3xl font-semibold tracking-normal text-slate-950 sm:text-4xl">
+      <h1 className="mt-4 text-3xl font-semibold leading-tight text-zinc-950 sm:text-4xl">
         Disclaimer
       </h1>
-      <div className="mt-8 space-y-8 rounded-lg border border-slate-200 bg-white p-6 text-base leading-8 text-slate-700 shadow-sm">
+      <div className="mt-10 space-y-6 rounded-lg border border-zinc-200 bg-white p-5 text-base leading-8 text-zinc-700 shadow-[0_16px_45px_rgba(24,24,27,0.055)] sm:p-7">
         <section>
-          <h2 className="text-xl font-semibold text-slate-950">
+          <h2 className="text-xl font-semibold text-zinc-950">
             Not for clinical decision-making
           </h2>
           <p className="mt-3">
@@ -29,8 +29,8 @@ export default function DisclaimerPage() {
           </p>
         </section>
 
-        <section>
-          <h2 className="text-xl font-semibold text-slate-950">
+        <section className="border-t border-zinc-200 pt-6">
+          <h2 className="text-xl font-semibold text-zinc-950">
             Relationship to clinical care
           </h2>
           <p className="mt-3">
@@ -42,8 +42,8 @@ export default function DisclaimerPage() {
           </p>
         </section>
 
-        <section>
-          <h2 className="text-xl font-semibold text-slate-950">
+        <section className="border-t border-zinc-200 pt-6">
+          <h2 className="text-xl font-semibold text-zinc-950">
             Validation status
           </h2>
           <p className="mt-3">
@@ -54,8 +54,8 @@ export default function DisclaimerPage() {
           </p>
         </section>
 
-        <section>
-          <h2 className="text-xl font-semibold text-slate-950">
+        <section className="border-t border-zinc-200 pt-6">
+          <h2 className="text-xl font-semibold text-zinc-950">
             Data handling
           </h2>
           <p className="mt-3">

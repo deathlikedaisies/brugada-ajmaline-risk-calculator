@@ -16,14 +16,14 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="mx-auto max-w-4xl px-5 py-12 lg:px-8">
-      <p className="text-xs font-semibold uppercase text-cyan-800">
+    <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <p className="text-xs font-semibold uppercase text-teal-800">
         Model explanation
       </p>
-      <h1 className="mt-3 text-3xl font-semibold tracking-normal text-slate-950 sm:text-4xl">
+      <h1 className="mt-4 text-3xl font-semibold leading-tight text-zinc-950 sm:text-4xl">
         About the BARC proof of concept
       </h1>
-      <p className="mt-5 max-w-3xl text-base leading-8 text-slate-700">
+      <p className="mt-5 max-w-3xl text-base leading-8 text-zinc-700">
         BARC is a browser-only research interface for presenting an adjusted
         logistic regression estimate in the context of Brugada syndrome
         ajmaline provocation testing. This interface is intended to demonstrate
@@ -32,9 +32,9 @@ export default function AboutPage() {
         derived from the adjusted analysis framework.
       </p>
 
-      <div className="mt-8 space-y-8 text-base leading-8 text-slate-700">
-        <section>
-          <h2 className="text-xl font-semibold text-slate-950">
+      <div className="mt-10 space-y-6 text-base leading-8 text-zinc-700">
+        <section className="rounded-lg border border-zinc-200 bg-white p-6 shadow-[0_10px_30px_rgba(24,24,27,0.045)]">
+          <h2 className="text-xl font-semibold text-zinc-950">
             What the model is
           </h2>
           <p className="mt-3">
@@ -49,8 +49,8 @@ export default function AboutPage() {
           </p>
         </section>
 
-        <section>
-          <h2 className="text-xl font-semibold text-slate-950">
+        <section className="rounded-lg border border-zinc-200 bg-white p-6 shadow-[0_10px_30px_rgba(24,24,27,0.045)]">
+          <h2 className="text-xl font-semibold text-zinc-950">
             Inputs included
           </h2>
           <ul className="mt-3 list-disc space-y-2 pl-5">
@@ -60,8 +60,8 @@ export default function AboutPage() {
           </ul>
         </section>
 
-        <section>
-          <h2 className="text-xl font-semibold text-slate-950">
+        <section className="rounded-lg border border-zinc-200 bg-white p-6 shadow-[0_10px_30px_rgba(24,24,27,0.045)]">
+          <h2 className="text-xl font-semibold text-zinc-950">
             Intended use
           </h2>
           <p className="mt-3">
@@ -73,60 +73,60 @@ export default function AboutPage() {
           </p>
         </section>
 
-        <section className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-          <h2 className="text-xl font-semibold text-slate-950">
+        <section className="rounded-lg border border-zinc-200 bg-white p-6 shadow-[0_10px_30px_rgba(24,24,27,0.045)]">
+          <h2 className="text-xl font-semibold text-zinc-950">
             Model status and performance
           </h2>
           <dl className="mt-4 grid gap-4 text-sm sm:grid-cols-2">
             <div>
-              <dt className="font-medium text-slate-600">Model name</dt>
-              <dd className="text-slate-950">{modelConfig.name}</dd>
+              <dt className="font-medium text-zinc-600">Model name</dt>
+              <dd className="text-zinc-950">{modelConfig.name}</dd>
             </div>
             <div>
-              <dt className="font-medium text-slate-600">Version</dt>
-              <dd className="text-slate-950">{modelConfig.version}</dd>
+              <dt className="font-medium text-zinc-600">Version</dt>
+              <dd className="text-zinc-950">{modelConfig.version}</dd>
             </div>
             <div>
-              <dt className="font-medium text-slate-600">Intercept</dt>
-              <dd className="font-mono text-slate-950">
+              <dt className="font-medium text-zinc-600">Intercept</dt>
+              <dd className="font-mono text-zinc-950">
                 {modelConfig.intercept}
               </dd>
             </div>
             <div>
-              <dt className="font-medium text-slate-600">Status</dt>
-              <dd className="text-slate-950">{modelConfig.status}</dd>
+              <dt className="font-medium text-zinc-600">Status</dt>
+              <dd className="text-zinc-950">{modelConfig.status}</dd>
             </div>
             <div>
-              <dt className="font-medium text-slate-600">AUC</dt>
-              <dd className="font-mono text-slate-950">{modelConfig.auc}</dd>
+              <dt className="font-medium text-zinc-600">AUC</dt>
+              <dd className="font-mono text-zinc-950">{modelConfig.auc}</dd>
             </div>
             <div>
-              <dt className="font-medium text-slate-600">AIC</dt>
-              <dd className="font-mono text-slate-950">{modelConfig.aic}</dd>
+              <dt className="font-medium text-zinc-600">AIC</dt>
+              <dd className="font-mono text-zinc-950">{modelConfig.aic}</dd>
             </div>
             <div>
-              <dt className="font-medium text-slate-600">PGS input</dt>
-              <dd className="text-slate-950">{modelConfig.pgsInputNote}</dd>
+              <dt className="font-medium text-zinc-600">PGS input</dt>
+              <dd className="text-zinc-950">{modelConfig.pgsInputNote}</dd>
             </div>
             <div>
-              <dt className="font-medium text-slate-600">
+              <dt className="font-medium text-zinc-600">
                 Intermediate band threshold
               </dt>
-              <dd className="font-mono text-slate-950">
+              <dd className="font-mono text-zinc-950">
                 {modelConfig.riskThresholds.intermediate}
               </dd>
             </div>
             <div>
-              <dt className="font-medium text-slate-600">Higher band threshold</dt>
-              <dd className="font-mono text-slate-950">
+              <dt className="font-medium text-zinc-600">Higher band threshold</dt>
+              <dd className="font-mono text-zinc-950">
                 {modelConfig.riskThresholds.higher}
               </dd>
             </div>
           </dl>
         </section>
 
-        <section>
-          <h2 className="text-xl font-semibold text-slate-950">
+        <section className="rounded-lg border border-rose-200 bg-white p-6 shadow-[0_10px_30px_rgba(24,24,27,0.045)]">
+          <h2 className="text-xl font-semibold text-zinc-950">
             Major limitations
           </h2>
           <p className="mt-3">

@@ -2,60 +2,100 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="mx-auto max-w-6xl px-5 py-14 sm:py-20 lg:px-8">
-      <section className="max-w-3xl">
-        <p className="text-xs font-semibold uppercase text-cyan-800">
-          Proof-of-concept research calculator
-        </p>
-        <h1 className="mt-4 text-4xl font-semibold tracking-normal text-slate-950 sm:text-5xl sm:leading-tight">
-          Brugada Ajmaline Risk Calculator (BARC)
-        </h1>
-        <p className="mt-6 text-base leading-8 text-slate-700 sm:text-lg">
-          BARC is a proof-of-concept research interface for presenting an
-          adjusted logistic regression-based estimate in the setting of
-          ajmaline testing for Brugada syndrome. The coefficients reflect the
-          adjusted model; displayed bands, where shown in technical details, are
-          not validated clinical thresholds.
-        </p>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Link
-            href="/calculator"
-            className="inline-flex justify-center rounded-md bg-cyan-800 px-5 py-3 text-base font-semibold text-white hover:bg-cyan-900"
-          >
-            Open calculator
-          </Link>
-          <Link
-            href="/about"
-            className="inline-flex justify-center rounded-md border border-slate-300 px-5 py-3 text-base font-semibold text-slate-800 hover:bg-slate-100"
-          >
-            Read model notes
-          </Link>
+    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-20 lg:px-8">
+      <section className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
+        <div className="max-w-3xl">
+          <p className="text-xs font-semibold uppercase text-teal-800">
+            Proof-of-concept research calculator
+          </p>
+          <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-tight text-zinc-950 sm:text-5xl lg:text-6xl">
+            Brugada Ajmaline Risk Calculator (BARC)
+          </h1>
+          <p className="mt-6 max-w-2xl text-base leading-8 text-zinc-700 sm:text-lg">
+            BARC is a proof-of-concept research interface for presenting an
+            adjusted logistic regression-based estimate in the setting of
+            ajmaline testing for Brugada syndrome. The coefficients reflect the
+            adjusted model; displayed bands, where shown in technical details, are
+            not validated clinical thresholds.
+          </p>
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <Link
+              href="/calculator"
+              className="inline-flex min-h-12 items-center justify-center rounded-md bg-teal-800 px-5 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-teal-900"
+            >
+              Open calculator
+            </Link>
+            <Link
+              href="/about"
+              className="inline-flex min-h-12 items-center justify-center rounded-md border border-zinc-300 bg-white px-5 py-3 text-base font-semibold text-zinc-800 shadow-sm transition hover:border-zinc-400 hover:bg-zinc-50"
+            >
+              Read model notes
+            </Link>
+          </div>
         </div>
+
+        <aside className="rounded-lg border border-zinc-200 bg-white p-5 shadow-[0_18px_50px_rgba(24,24,27,0.07)]">
+          <p className="text-xs font-semibold uppercase text-zinc-500">
+            Interface status
+          </p>
+          <dl className="mt-5 divide-y divide-zinc-200 border-y border-zinc-200">
+            <div className="py-4">
+              <dt className="text-sm font-medium text-zinc-600">
+                Model framing
+              </dt>
+              <dd className="mt-1 text-base font-semibold text-zinc-950">
+                Adjusted logistic regression
+              </dd>
+            </div>
+            <div className="py-4">
+              <dt className="text-sm font-medium text-zinc-600">
+                Operating mode
+              </dt>
+              <dd className="mt-1 text-base font-semibold text-zinc-950">
+                Browser-only calculation
+              </dd>
+            </div>
+            <div className="py-4">
+              <dt className="text-sm font-medium text-zinc-600">
+                Intended context
+              </dt>
+              <dd className="mt-1 text-base font-semibold text-zinc-950">
+                Academic review
+              </dd>
+            </div>
+          </dl>
+        </aside>
       </section>
 
-      <section className="mt-12 grid gap-4 md:grid-cols-3">
+      <section className="mt-14 grid gap-4 md:grid-cols-3">
         {[
           {
-            title: "Clinician-readable predictors",
+            eyebrow: "Predictors",
+            title: "Clinician-readable inputs",
             body: "Inputs follow the adjusted model terms for LASSO Clinical PGS, sex coding, baseline QRS, ECG pattern, and family history.",
           },
           {
-            title: "Transparent adjusted model",
+            eyebrow: "Transparency",
+            title: "Adjusted model display",
             body: "The logistic calculation, model metadata, and placeholder category bands are clearly marked for research review.",
           },
           {
+            eyebrow: "Data handling",
             title: "Browser-only operation",
             body: "No authentication, backend, database, analytics, or patient data storage is included.",
           },
         ].map((item) => (
           <article
             key={item.title}
-            className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm"
+            className="min-h-full rounded-lg border border-zinc-200 bg-white p-6 shadow-[0_10px_30px_rgba(24,24,27,0.045)]"
           >
-            <h2 className="text-lg font-semibold text-slate-950">
+            <p className="text-xs font-semibold uppercase text-teal-800">
+              {item.eyebrow}
+            </p>
+            <h2 className="mt-3 text-lg font-semibold text-zinc-950">
               {item.title}
             </h2>
-            <p className="mt-3 leading-7 text-slate-700">{item.body}</p>
+            <p className="mt-3 leading-7 text-zinc-700">{item.body}</p>
           </article>
         ))}
       </section>
