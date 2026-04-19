@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { calculateRisk } from "@/lib/calculator";
 import {
   examplePatient,
@@ -104,6 +104,7 @@ export function CalculatorForm() {
                 placeholder="90"
                 value={inputs.baselineQrs}
                 unit="ms"
+                stripLeadingZero
                 onChange={(value) => updateInput("baselineQrs", value)}
               />
 
@@ -183,6 +184,7 @@ type NumberFieldProps = {
   placeholder: string;
   value: number;
   unit: string;
+  stripLeadingZero?: boolean;
   onChange: (value: number) => void;
 };
 
@@ -196,8 +198,37 @@ function NumberField({
   placeholder,
   value,
   unit,
+  stripLeadingZero = false,
   onChange,
 }: NumberFieldProps) {
+  const [displayValue, setDisplayValue] = useState(() => String(value));
+  const isEditingRef = useRef(false);
+
+  useEffect(() => {
+    if (!isEditingRef.current) {
+      setDisplayValue(String(value));
+    }
+  }, [value]);
+
+  function handleChange(rawValue: string) {
+    const nextValue =
+      stripLeadingZero && /^0\d/.test(rawValue)
+        ? rawValue.replace(/^0+(?=\d)/, "")
+        : rawValue;
+
+    setDisplayValue(nextValue);
+
+    if (nextValue === "") {
+      return;
+    }
+
+    const numericValue = Number(nextValue);
+
+    if (Number.isFinite(numericValue)) {
+      onChange(numericValue);
+    }
+  }
+
   return (
     <div>
       <label
@@ -215,8 +246,14 @@ function NumberField({
           max={max}
           step={step}
           placeholder={placeholder}
-          value={value}
-          onChange={(event) => onChange(event.currentTarget.valueAsNumber || 0)}
+          value={displayValue}
+          onFocus={() => {
+            isEditingRef.current = true;
+          }}
+          onBlur={() => {
+            isEditingRef.current = false;
+          }}
+          onChange={(event) => handleChange(event.currentTarget.value)}
           className="min-w-0 flex-1 bg-white px-4 py-3 text-base text-zinc-950 outline-none"
         />
         <span className="flex min-w-20 items-center justify-center border-l border-zinc-200 bg-zinc-50/80 px-3 text-sm font-medium text-zinc-400">
