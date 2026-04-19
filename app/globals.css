@@ -22,6 +22,11 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+main {
+  min-width: 0;
 }
 
 ::selection {

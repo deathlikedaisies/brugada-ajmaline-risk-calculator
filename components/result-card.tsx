@@ -9,28 +9,31 @@ export function ResultCard({ result }: ResultCardProps) {
   return (
     <section
       aria-labelledby="risk-result-heading"
-      className="overflow-hidden rounded-lg border border-zinc-200 bg-white shadow-[0_16px_45px_rgba(24,24,27,0.06)]"
+      className="min-w-0 overflow-hidden rounded-lg border border-teal-900/15 bg-white shadow-[0_18px_48px_rgba(24,24,27,0.095)]"
     >
-      <div className="border-b border-zinc-200 px-5 py-6 sm:px-7">
-        <p className="text-xs font-semibold uppercase text-zinc-500">
+      <div className="bg-teal-50/45 px-4 py-6 sm:px-6 sm:py-7">
+        <p className="text-xs font-semibold uppercase text-teal-900">
           Model-based estimate
         </p>
-        <p className="mt-5 text-sm font-medium text-zinc-600">
+        <p className="mt-6 text-sm font-medium text-zinc-600">
           Model-estimated probability (research output)
         </p>
         <h2
           id="risk-result-heading"
-          className="mt-1 text-5xl font-semibold text-zinc-950 sm:text-6xl"
+          className="mt-2 text-6xl font-semibold leading-none text-zinc-950 sm:text-7xl"
         >
           {result.percentage.toFixed(1)}%
         </h2>
-        <div className="mt-4 h-2 overflow-hidden rounded-full bg-zinc-100">
+        <div className="mt-5 h-1.5 overflow-hidden rounded-full bg-white/80 ring-1 ring-teal-900/10">
           <div
-            className="h-full rounded-full bg-teal-800"
+            className="h-full rounded-full bg-teal-700/75"
             style={{ width: `${Math.min(result.percentage, 100)}%` }}
           />
         </div>
-        <p className="mt-4 text-sm leading-6 text-zinc-600">
+      </div>
+
+      <div className="border-y border-zinc-200 px-4 py-5 sm:px-6">
+        <p className="text-sm leading-6 text-zinc-600">
           This value represents a model-derived probability based on internal
           model performance and is intended for research interpretation.
         </p>
@@ -40,36 +43,36 @@ export function ResultCard({ result }: ResultCardProps) {
           clinical, ECG, and genetic predictors included in the adjusted model.
         </p>
         <div className="mt-4 grid gap-2 text-xs text-zinc-500 sm:grid-cols-2">
-          <p className="rounded-md bg-zinc-50 px-3 py-2">
+          <p className="rounded-md border border-zinc-200 bg-white px-3 py-2">
             Model discrimination (apparent AUC): {modelConfig.auc.toFixed(2)}
           </p>
-          <p className="rounded-md bg-zinc-50 px-3 py-2">
+          <p className="rounded-md border border-zinc-200 bg-white px-3 py-2">
             Derived from n = 1,129 individuals in the ajmaline cohort
           </p>
         </div>
       </div>
 
-      <div className="divide-y divide-zinc-200 px-5 sm:px-7">
+      <div className="divide-y divide-zinc-200 px-4 sm:px-6">
         <div className="py-5">
-          <h3 className="text-base font-semibold text-zinc-950">
+          <h3 className="text-sm font-semibold text-zinc-950">
             Interpretation
           </h3>
-          <p className="mt-2 text-base leading-7 text-zinc-700">
+          <p className="mt-2 text-sm leading-7 text-zinc-700">
             {result.interpretation}
           </p>
         </div>
 
         <div className="py-5">
-          <h3 className="text-base font-semibold text-zinc-950">
+          <h3 className="text-sm font-semibold text-zinc-950">
             Model terms
           </h3>
-          <dl className="mt-4 divide-y divide-zinc-200 rounded-md border border-zinc-200">
+          <dl className="mt-3 divide-y divide-zinc-200 rounded-md border border-zinc-200 bg-zinc-50/40">
             {result.contributingFactors.map((factor) => (
               <div
                 key={factor.label}
-                className="grid gap-2 px-3 py-3 text-sm sm:grid-cols-[minmax(0,1fr)_minmax(130px,auto)]"
+                className="grid min-w-0 gap-2 px-3 py-3 text-sm sm:grid-cols-[minmax(0,1fr)_minmax(130px,auto)]"
               >
-                <dt>
+                <dt className="min-w-0">
                   <span className="block font-medium text-zinc-800">
                     {factor.label}
                   </span>
@@ -77,8 +80,8 @@ export function ResultCard({ result }: ResultCardProps) {
                     {factor.contributionStrength}
                   </span>
                 </dt>
-                <dd className="text-zinc-700 sm:text-right">
-                  <span className="block">{factor.value}</span>
+                <dd className="min-w-0 text-zinc-700 sm:text-right">
+                  <span className="block break-words">{factor.value}</span>
                 </dd>
               </div>
             ))}
@@ -93,14 +96,14 @@ export function ResultCard({ result }: ResultCardProps) {
           <summary className="cursor-pointer rounded-md border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-900 marker:text-teal-800">
             Model details
           </summary>
-          <div className="px-1 pb-1 pt-4 text-sm leading-6 text-zinc-700 sm:px-4">
+          <div className="min-w-0 px-1 pb-1 pt-4 text-sm leading-6 text-zinc-700 sm:px-4">
             <p>
               The calculator applies the {modelConfig.version} coefficients to
               the entered predictors, sums them into a linear predictor, then
               converts that value with the logistic function. Category bands are
               placeholders for interface review.
             </p>
-            <dl className="mt-4 grid gap-3 border-l-2 border-zinc-200 pl-4">
+            <dl className="mt-4 grid min-w-0 gap-3 border-l-2 border-zinc-200 pl-4">
               <div className="grid gap-1 sm:flex sm:items-center sm:justify-between sm:gap-4">
                 <dt className="text-zinc-600">Linear predictor</dt>
                 <dd className="font-mono text-zinc-950">
@@ -115,7 +118,7 @@ export function ResultCard({ result }: ResultCardProps) {
               </div>
               <div className="grid gap-1 sm:flex sm:items-center sm:justify-between sm:gap-4">
                 <dt className="text-zinc-600">Model band</dt>
-                <dd className="text-zinc-950 sm:text-right">
+                <dd className="break-words text-zinc-950 sm:text-right">
                   {result.category}
                 </dd>
               </div>
@@ -132,13 +135,13 @@ export function ResultCard({ result }: ResultCardProps) {
                 </dd>
               </div>
             </dl>
-            <dl className="mt-4 grid gap-3 border-l-2 border-zinc-200 pl-4">
+            <dl className="mt-4 grid min-w-0 gap-3 border-l-2 border-zinc-200 pl-4">
               {result.contributingFactors.map((factor) => (
                 <div
                   key={factor.label}
-                  className="grid gap-1 sm:flex sm:items-center sm:justify-between sm:gap-4"
+                  className="grid min-w-0 gap-1 sm:flex sm:items-center sm:justify-between sm:gap-4"
                 >
-                  <dt className="text-zinc-600">{factor.label}</dt>
+                  <dt className="min-w-0 text-zinc-600">{factor.label}</dt>
                   <dd className="font-mono text-zinc-950">
                     LP {factor.contribution >= 0 ? "+" : ""}
                     {factor.contribution.toFixed(3)}

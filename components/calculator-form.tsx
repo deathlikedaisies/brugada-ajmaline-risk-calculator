@@ -33,12 +33,12 @@ export function CalculatorForm() {
   }
 
   return (
-    <div className="grid gap-7 lg:grid-cols-[minmax(0,1.08fr)_minmax(340px,0.92fr)] lg:items-start xl:gap-8">
+    <div className="grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1.04fr)_minmax(340px,0.96fr)] lg:items-start xl:gap-9">
       <section
         aria-labelledby="calculator-inputs-heading"
-        className="overflow-hidden rounded-lg border border-zinc-200 bg-white shadow-[0_16px_45px_rgba(24,24,27,0.055)]"
+        className="min-w-0 overflow-hidden rounded-lg border border-zinc-200 bg-white shadow-[0_10px_30px_rgba(24,24,27,0.045)]"
       >
-        <div className="flex flex-col gap-5 border-b border-zinc-200 bg-white px-5 py-5 sm:px-7 sm:py-6 md:flex-row md:items-start md:justify-between">
+        <div className="flex flex-col gap-5 border-b border-zinc-200 bg-zinc-50/55 px-4 py-5 sm:px-6 sm:py-6 md:flex-row md:items-start md:justify-between">
           <div>
             <p className="text-xs font-semibold uppercase text-zinc-500">
               Predictor entry
@@ -58,7 +58,7 @@ export function CalculatorForm() {
             <button
               type="button"
               onClick={() => setInputs(examplePatient)}
-              className="min-h-11 w-full rounded-md border border-zinc-300 bg-white px-4 py-2.5 text-sm font-semibold text-zinc-800 shadow-sm transition hover:border-zinc-400 hover:bg-zinc-50"
+              className="min-h-12 w-full rounded-md border border-zinc-300 bg-white px-4 py-2.5 text-sm font-semibold text-zinc-800 shadow-sm transition hover:border-zinc-400 hover:bg-zinc-50"
             >
               Load example case
             </button>
@@ -68,8 +68,8 @@ export function CalculatorForm() {
           </div>
         </div>
 
-        <form className="px-5 py-6 sm:px-7 sm:py-7">
-          <div className="grid gap-9">
+        <form className="px-4 py-6 sm:px-6 sm:py-7">
+          <div className="grid gap-8">
             <InputGroup title="Patient characteristics">
               <RadioGroup
                 legend="Sex"
@@ -139,9 +139,9 @@ export function CalculatorForm() {
         </form>
       </section>
 
-      <div className="space-y-4 lg:sticky lg:top-24">
+      <div className="min-w-0 space-y-5 lg:sticky lg:top-24">
         <ResultCard result={result} />
-        <section className="rounded-lg border border-rose-200 bg-white p-5 text-sm leading-6 text-zinc-700 shadow-[0_10px_30px_rgba(24,24,27,0.045)]">
+        <section className="rounded-lg border border-rose-200/80 bg-white p-4 text-sm leading-6 text-zinc-700 shadow-[0_6px_18px_rgba(24,24,27,0.035)] sm:p-5">
           <h2 className="font-semibold text-zinc-950">Important limitation</h2>
           <p className="mt-2">
             This proof of concept uses adjusted model coefficients, while risk
@@ -164,10 +164,10 @@ type InputGroupProps = {
 function InputGroup({ title, children }: InputGroupProps) {
   return (
     <section>
-      <h3 className="border-b border-zinc-200 pb-3 text-sm font-semibold uppercase text-zinc-500">
+      <h3 className="border-b border-zinc-200 pb-2.5 text-xs font-semibold uppercase text-zinc-500">
         {title}
       </h3>
-      <div className="mt-5 grid gap-6">{children}</div>
+      <div className="mt-5 grid gap-5">{children}</div>
     </section>
   );
 }
@@ -201,12 +201,12 @@ function NumberField({
     <div>
       <label
         htmlFor={id}
-        className="block text-base font-semibold text-zinc-950"
+        className="block text-sm font-semibold text-zinc-900"
       >
         {label}
       </label>
-      <p className="mt-1 text-sm leading-6 text-zinc-600">{helperText}</p>
-      <div className="mt-3 flex min-h-12 overflow-hidden rounded-md border border-zinc-300 bg-white shadow-sm transition focus-within:border-teal-700 focus-within:ring-2 focus-within:ring-teal-700/15">
+      <p className="mt-1 text-xs leading-5 text-zinc-500">{helperText}</p>
+      <div className="mt-2.5 flex min-h-12 overflow-hidden rounded-md border border-zinc-300 bg-white shadow-sm transition focus-within:border-teal-700 focus-within:ring-2 focus-within:ring-teal-700/15">
         <input
           id={id}
           type="number"
@@ -216,9 +216,9 @@ function NumberField({
           placeholder={placeholder}
           value={value}
           onChange={(event) => onChange(event.currentTarget.valueAsNumber || 0)}
-          className="min-w-0 flex-1 bg-white px-3.5 py-3 text-base text-zinc-950 outline-none"
+          className="min-w-0 flex-1 bg-white px-4 py-3 text-base text-zinc-950 outline-none"
         />
-        <span className="flex min-w-20 items-center justify-center border-l border-zinc-200 bg-zinc-50 px-3 text-sm font-medium text-zinc-600">
+        <span className="flex min-w-20 items-center justify-center border-l border-zinc-200 bg-zinc-50/80 px-3 text-sm font-medium text-zinc-400">
           {unit}
         </span>
       </div>
@@ -245,15 +245,15 @@ function RadioGroup({
 }: RadioGroupProps) {
   return (
     <fieldset>
-      <legend className="text-base font-semibold text-zinc-950">
+      <legend className="text-sm font-semibold text-zinc-900">
         {legend}
       </legend>
-      <p className="mt-1 text-sm leading-6 text-zinc-600">{helperText}</p>
-      <div className="mt-3 grid gap-3 sm:grid-cols-2">
+      <p className="mt-1 text-xs leading-5 text-zinc-500">{helperText}</p>
+      <div className="mt-2.5 grid grid-cols-2 gap-1 rounded-lg border border-zinc-200 bg-zinc-50 p-1">
         {options.map((option) => (
           <label
             key={option.value}
-            className="flex min-h-12 cursor-pointer items-center gap-3 rounded-md border border-zinc-300 bg-white px-3.5 py-3 text-base font-medium text-zinc-800 shadow-sm transition hover:border-zinc-400 hover:bg-zinc-50 has-[:checked]:border-teal-700 has-[:checked]:bg-teal-50 has-[:checked]:text-teal-950"
+            className="flex min-h-12 cursor-pointer items-center justify-center rounded-md border border-transparent px-3 py-2.5 text-center text-sm font-semibold text-zinc-600 transition hover:text-zinc-950 has-[:checked]:border-teal-700/70 has-[:checked]:bg-white has-[:checked]:text-teal-950 has-[:checked]:shadow-sm has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-teal-700/20"
           >
             <input
               type="radio"
@@ -261,9 +261,9 @@ function RadioGroup({
               value={option.value}
               checked={value === option.value}
               onChange={() => onChange(option.value)}
-              className="size-4 accent-teal-800"
+              className="sr-only"
             />
-            {option.label}
+            <span className="break-words">{option.label}</span>
           </label>
         ))}
       </div>
@@ -297,24 +297,24 @@ function BooleanGroup({
 
   return (
     <fieldset>
-      <legend className="text-base font-semibold text-zinc-950">
+      <legend className="text-sm font-semibold text-zinc-900">
         {legend}
       </legend>
-      <p className="mt-1 text-sm leading-6 text-zinc-600">{helperText}</p>
-      <div className="mt-3 grid gap-3 sm:grid-cols-2">
+      <p className="mt-1 text-xs leading-5 text-zinc-500">{helperText}</p>
+      <div className="mt-2.5 grid grid-cols-2 gap-1 rounded-lg border border-zinc-200 bg-zinc-50 p-1">
         {options.map((option) => (
           <label
             key={option.label}
-            className="flex min-h-12 cursor-pointer items-center gap-3 rounded-md border border-zinc-300 bg-white px-3.5 py-3 text-base font-medium text-zinc-800 shadow-sm transition hover:border-zinc-400 hover:bg-zinc-50 has-[:checked]:border-teal-700 has-[:checked]:bg-teal-50 has-[:checked]:text-teal-950"
+            className="flex min-h-12 cursor-pointer items-center justify-center rounded-md border border-transparent px-3 py-2.5 text-center text-sm font-semibold text-zinc-600 transition hover:text-zinc-950 has-[:checked]:border-teal-700/70 has-[:checked]:bg-white has-[:checked]:text-teal-950 has-[:checked]:shadow-sm has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-teal-700/20"
           >
             <input
               type="radio"
               name={name}
               checked={value === option.value}
               onChange={() => onChange(option.value)}
-              className="size-4 accent-teal-800"
+              className="sr-only"
             />
-            {option.label}
+            <span className="break-words">{option.label}</span>
           </label>
         ))}
       </div>

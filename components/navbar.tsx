@@ -8,29 +8,31 @@ const navigation = [
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-20 border-b border-zinc-200/80 bg-white/90 backdrop-blur">
+    <header className="sticky top-0 z-20 border-b border-zinc-200 bg-white/90 backdrop-blur">
       <nav
         aria-label="Primary navigation"
-        className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8"
+        className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-4 sm:min-h-18 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8"
       >
         <Link
           href="/"
-          className="group min-w-0 max-w-full text-base font-semibold text-zinc-950 sm:text-lg"
+          className="group flex min-w-0 max-w-full items-start gap-3 text-base font-semibold text-zinc-950 sm:items-center sm:text-lg"
         >
-          <span className="inline-flex size-8 items-center justify-center rounded-md border border-teal-800/20 bg-teal-50 text-sm font-bold text-teal-900 shadow-sm">
+          <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-md border border-teal-900/15 bg-teal-50 text-sm font-bold text-teal-950 shadow-sm transition group-hover:border-teal-800/30">
             B
-          </span>{" "}
-          <span className="align-middle">BARC</span>{" "}
-          <span className="mt-1 block max-w-full truncate font-normal text-zinc-500 sm:mt-0 sm:inline">
-            Proof-of-concept research calculator
+          </span>
+          <span className="min-w-0">
+            <span className="block leading-5">BARC</span>
+            <span className="mt-0.5 block text-sm font-normal leading-5 text-zinc-500 sm:inline sm:text-base">
+              Proof-of-concept research calculator
+            </span>
           </span>
         </Link>
-        <div className="flex flex-wrap gap-1 text-sm font-medium text-zinc-600 sm:justify-end">
+        <div className="flex flex-wrap gap-2 text-sm font-medium text-zinc-600 sm:justify-end">
           {navigation.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-md px-3 py-2 transition hover:bg-zinc-100 hover:text-zinc-950"
+              className="rounded-md px-3.5 py-2 transition hover:bg-zinc-100 hover:text-zinc-950 focus-visible:bg-zinc-100"
             >
               {item.label}
             </Link>
