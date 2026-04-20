@@ -62,6 +62,23 @@ export default function AboutPage() {
 
         <section className="rounded-lg border border-zinc-200 bg-white p-6 shadow-[0_10px_30px_rgba(24,24,27,0.045)]">
           <h2 className="text-xl font-semibold text-zinc-950">
+            How the polygenic input is obtained
+          </h2>
+          <p className="mt-3">
+            The polygenic score is not directly measured in routine clinical
+            care. It would typically require genomic data generation, genetic
+            quality control, score calculation using the specified score
+            definition, and standardization as a z-score in a comparable
+            population.
+          </p>
+          <p className="mt-3">
+            In a future clinical implementation, this value would ideally be
+            derived automatically from genomic data rather than entered manually.
+          </p>
+        </section>
+
+        <section className="rounded-lg border border-zinc-200 bg-white p-6 shadow-[0_10px_30px_rgba(24,24,27,0.045)]">
+          <h2 className="text-xl font-semibold text-zinc-950">
             Intended use
           </h2>
           <p className="mt-3">

@@ -67,7 +67,7 @@ export const examplePatient: ModelInputs = {
 };
 
 export const examplePatientLabel =
-  "Female = 1, LASSO Clinical PGS 0.4, baseline QRS 95 ms, type 2/3 ECG present, family history no";
+  "Female = 1, standardized example PGS 0.4 for demonstration, baseline QRS 95 ms, type 2/3 ECG present, family history no";
 
 export function getSexModelValue(sex: Sex): 0 | 1 {
   // Source data: Sex was coded 1 = male and 2 = female. The analysis script
