@@ -61,7 +61,7 @@ export function categorizeRisk(probability: number): RiskCategory {
 }
 
 export function getInterpretation(): string {
-  return "This value represents a relative model-based estimate within this dataset and reflects internal model performance. It should not be interpreted as an absolute or externally generalizable clinical risk.";
+  return "This percentile represents the patient's relative position within the derivation cohort distribution and reflects internal model performance. It should not be interpreted as an absolute or externally generalizable clinical risk.";
 }
 
 export function getContributingFactors(

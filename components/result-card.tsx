@@ -25,8 +25,8 @@ function getOrdinalSuffix(value: number): string {
 }
 
 export function ResultCard({ result }: ResultCardProps) {
-  const roundedPercentile = Math.round(result.percentile);
-  const percentileLabel = `${roundedPercentile}${getOrdinalSuffix(roundedPercentile)} percentile`;
+  const percentileRounded = Math.round(result.percentile);
+  const percentileLabel = `${percentileRounded}${getOrdinalSuffix(percentileRounded)} percentile`;
 
   return (
     <section
@@ -51,9 +51,13 @@ export function ResultCard({ result }: ResultCardProps) {
         <p className="mt-4 text-center text-sm text-zinc-600">
           Relative to the derivation cohort distribution.
         </p>
+        <p className="mx-auto mt-3 max-w-md text-center text-sm leading-6 text-zinc-600">
+          Higher percentiles indicate stronger alignment with the model profile
+          observed in ajmaline-positive individuals.
+        </p>
         <div className="mt-7 h-1.5 overflow-hidden rounded-full bg-white/85 ring-1 ring-[#8f3f3f]/15">
           <div
-            className="h-full rounded-full bg-[#8f3f3f]/65 transition-all duration-500 ease-out"
+            className="h-full rounded-full bg-linear-to-r from-zinc-300 via-rose-200 to-[#8f3f3f]/60 transition-all duration-500 ease-out"
             style={{ width: `${Math.min(Math.max(result.percentile, 0), 100)}%` }}
           />
         </div>
@@ -92,15 +96,17 @@ export function ResultCard({ result }: ResultCardProps) {
           </h3>
           <dl className="mt-3 grid gap-3 rounded-md border border-[#eadfdf] bg-rose-50/20 p-4 text-sm leading-6 text-zinc-700">
             <div className="grid gap-1 sm:flex sm:items-center sm:justify-between sm:gap-4">
-              <dt className="text-zinc-600">Derived probability</dt>
+              <dt className="text-zinc-600">
+                Model-implied probability (technical)
+              </dt>
               <dd className="font-mono text-zinc-950">
                 {result.percentage.toFixed(1)}%
               </dd>
             </div>
             <div className="grid gap-1 sm:flex sm:items-center sm:justify-between sm:gap-4">
-              <dt className="text-zinc-600">Derivation percentile</dt>
+              <dt className="text-zinc-600">Model score percentile</dt>
               <dd className="font-mono text-zinc-950">
-                {result.percentile.toFixed(1)}
+                {percentileRounded}
               </dd>
             </div>
           </dl>
@@ -156,9 +162,9 @@ export function ResultCard({ result }: ResultCardProps) {
                 </dd>
               </div>
               <div className="grid gap-1 sm:flex sm:items-center sm:justify-between sm:gap-4">
-                <dt className="text-zinc-600">Percentile</dt>
+                <dt className="text-zinc-600">Model score percentile</dt>
                 <dd className="font-mono text-zinc-950">
-                  {result.percentile.toFixed(1)}
+                  {percentileRounded}
                 </dd>
               </div>
               <div className="grid gap-1 sm:flex sm:items-center sm:justify-between sm:gap-4">
