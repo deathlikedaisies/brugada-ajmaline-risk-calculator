@@ -21,11 +21,13 @@ export default function DisclaimerPage() {
           </h2>
           <p className="mt-3">
             BARC is a proof-of-concept research application. Its output is a
-            model-based estimate generated from adjusted analysis coefficients;
-            any displayed category bands are placeholders for interface review.
-            It is not a medical device or clinically validated tool. It is also
-            not a diagnostic test, treatment recommendation, or clinical
-            management pathway.
+            model score percentile generated from adjusted analysis
+            coefficients; any displayed category bands are placeholders for
+            interface review. The percentile is relative to the derivation
+            cohort distribution and is not an absolute clinical risk. It is not
+            a medical device or clinically validated tool. It is also not a
+            diagnostic test, treatment recommendation, or clinical management
+            pathway.
           </p>
         </section>
 

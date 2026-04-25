@@ -3,6 +3,7 @@ import {
   modelConfig,
   type ModelInputs,
 } from "./model-config";
+import { calculateDerivationPercentile } from "./percentiles";
 
 export type RiskCategory =
   | "Lower placeholder model-based band"
@@ -22,6 +23,7 @@ export type CalculationResult = {
   linearPredictor: number;
   probability: number;
   percentage: number;
+  percentile: number;
   category: RiskCategory;
   interpretation: string;
   contributingFactors: ContributingFactor[];
@@ -131,12 +133,14 @@ function getContributionStrength(
 export function calculateRisk(inputs: ModelInputs): CalculationResult {
   const linearPredictor = calculateLinearPredictor(inputs);
   const probability = logistic(linearPredictor);
+  const percentile = calculateDerivationPercentile(linearPredictor);
   const category = categorizeRisk(probability);
 
   return {
     linearPredictor,
     probability,
     percentage: probability * 100,
+    percentile,
     category,
     interpretation: getInterpretation(),
     contributingFactors: getContributingFactors(inputs),

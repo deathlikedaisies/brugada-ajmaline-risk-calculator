@@ -25,11 +25,11 @@ export default function AboutPage() {
       </h1>
       <p className="mt-5 max-w-3xl text-base leading-8 text-zinc-700">
         BARC is a browser-only research interface for presenting an adjusted
-        logistic regression estimate in the context of Brugada syndrome
+        logistic regression model score in the context of Brugada syndrome
         ajmaline provocation testing. This interface is intended to demonstrate
         how a multivariable model may be translated into a clinician-facing
-        tool. The model integrates clinical, ECG, and polygenic predictors
-        derived from the adjusted analysis framework.
+        research interface. The model integrates clinical, ECG, and polygenic
+        predictors derived from the adjusted analysis framework.
       </p>
 
       <div className="mt-10 space-y-6 text-base leading-8 text-zinc-700">
@@ -41,11 +41,14 @@ export default function AboutPage() {
             The current implementation uses the adjusted logistic regression
             model specified as: {modelConfig.formula}. It combines the intercept
             with weighted predictor values to calculate a linear predictor, then
-            applies the logistic function to return a predicted probability. It
-            remains a proof-of-concept research implementation and is not
-            validated for routine clinical use. This model reflects internal
-            performance only and has not undergone external validation. No
-            calibration assessment or recalibration has been performed.
+            applies the logistic function and maps the resulting model score to
+            the derivation cohort percentile distribution. The displayed
+            percentile is therefore a relative position within the derivation
+            cohort rather than an absolute clinical risk. It remains a
+            proof-of-concept research implementation and is not validated for
+            routine clinical use. This model reflects internal performance only
+            and has not undergone external validation. No calibration
+            assessment or recalibration has been performed.
           </p>
         </section>
 
@@ -154,9 +157,9 @@ export default function AboutPage() {
             The proof of concept has not undergone clinical validation,
             calibration assessment, external validation, subgroup performance
             review, decision-curve analysis, or governance review for deployment
-            in routine patient care. Its estimates should be treated as research
-            interface outputs only, even though the displayed coefficients come
-            from the adjusted analysis model.
+            in routine patient care. Its percentile output should be treated as
+            a derivation-cohort-relative research output only, even though the
+            displayed coefficients come from the adjusted analysis model.
           </p>
         </section>
       </div>
